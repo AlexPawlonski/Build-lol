@@ -10,15 +10,21 @@ export function useLangueCode() {
 }
 
 export function useInitChampion(lang: string, version: string) {
-  return useQuery(["game-ChampionList", lang, version], () => getAllChampionData({ lang, version }));
+  return useQuery(["game-ChampionList", lang, version], () => getAllChampionData({ lang, version }), {
+    enabled: Boolean(lang && version),
+  });
 }
 
 export function useInitItems(lang: string, version: string) {
-  return useQuery(["game-ItemList", lang, version], () => getAllObjectData({ lang, version }));
+  return useQuery(["game-ItemList", lang, version], () => getAllObjectData({ lang, version }), {
+    enabled: Boolean(lang && version),
+  });
 }
 
 export function useInitRegion(region: string) {
-  return useQuery(["game-Region", region], () => getRegion(region));
+  return useQuery(["game-Region", region], () => getRegion(region), {
+    enabled: Boolean(region),
+  });
 }
 
 export function useChampion() {

@@ -4,7 +4,7 @@ function App() {
   return (
     <div>
       <Header />
-      <main className="h-full flex">
+      <main className="relative flex">
         <Nav />
         <ChampSelect />
       </main>

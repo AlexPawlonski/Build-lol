@@ -1,5 +1,5 @@
 import { ChampionsData, ItemData, LeagueOfLegendsCDN } from "../interface";
-import { apiLol } from "./axios";
+import { VITE_LOL_URL, apiLol } from "./axios";
 
 export async function getVersion(): Promise<string[]> {
   const { data } = await apiLol({
@@ -30,6 +30,10 @@ export async function getAllChampionData(param: { lang: string; version: string 
   });
   return data;
 }
+export function getChampionImg(id: string, version: string): string {
+  return `${VITE_LOL_URL}/cdn/${version}/img/champion/${id}.png`;
+}
+
 export async function getAllObjectData(param: { lang: string; version: string }): Promise<ItemData> {
   const { data } = await apiLol({
     method: "GET",
@@ -41,6 +45,7 @@ export async function getAllObjectData(param: { lang: string; version: string })
 // export async function getChampionSplash( id: string) {
 //   //http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Aatrox_0.jpg
 // }
+
 // export async function getItemIcon(id: string) {
 //   //http://ddragon.leagueoflegends.com/cdn/13.17.1/img/item/1001.png
 // }

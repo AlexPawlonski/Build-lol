@@ -1,6 +1,6 @@
-import { ReactElement, useContext, useState } from "react";
+import { ReactElement, useContext, useEffect, useState } from "react";
 import { Select } from "../../atoms";
-import { useLangueCode, useRegion, useVersion } from "../../../hook";
+import { useInitRegion, useLangueCode, useRegion, useVersion } from "../../../hook";
 import { selectFormat } from "../../../utils";
 import { GlobalContext } from "../../../globalContext";
 import logo from "../../../assets/League of Legends.svg";
@@ -10,10 +10,21 @@ const Header = ({}: Props): ReactElement => {
   const [regionCode, setRegionCode] = useState("euw");
 
   const { language, setLanguage, version, setVersion } = useContext(GlobalContext);
+
   const { data: languageCode } = useLangueCode();
-  const { mutate: updateReagion } = useRegion();
+  const { data: region } = useInitRegion(regionCode);
   const { data: versions } = useVersion();
-  console.log(versions);
+
+  const { mutate: updateReagion } = useRegion();
+
+  useEffect(() => {
+    if (region?.css) {
+      setVersion(region.css);
+    }
+    if (region?.l) {
+      setLanguage(region?.l);
+    }
+  }, [region]);
 
   return (
     <header className="w-full h-14 border-b-or-3 border-b-2 flex justify-between">

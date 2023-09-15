@@ -12,7 +12,7 @@ body {
 }
 
 #root {
-    height: 100%;
+  height: 100%;
 }
 
 .no-scrollbar::-webkit-scrollbar {
@@ -38,4 +38,8 @@ body {
     /* chrome、firefox */ url("./font/beaufort-for-lol/BeaufortforLOL-Bold.ttf") format("truetype"),
     /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
       url("./font/beaufort-for-lol/BeaufortforLOL-Bold.svg#BeaufortforLOL Bold") format("svg"); /* iOS 4.1- */
+}
+
+main {
+  height: calc(100vh - 56px);
 }
