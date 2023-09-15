@@ -8,10 +8,10 @@ export async function getVersion(): Promise<string[]> {
   });
   return data;
 }
-export async function getRegion(): Promise<LeagueOfLegendsCDN> {
+export async function getRegion(region: string): Promise<LeagueOfLegendsCDN> {
   const { data } = await apiLol({
     method: "GET",
-    url: "/realms/euw.json",
+    url: `/realms/${region}.json`,
   });
   return data;
 }
@@ -23,17 +23,17 @@ export async function getLanguageCode(): Promise<string[]> {
   return data;
 }
 
-export async function getAllChampionData(lang: string, version: string): Promise<ChampionsData> {
+export async function getAllChampionData(param: { lang: string; version: string }): Promise<ChampionsData> {
   const { data } = await apiLol({
     method: "GET",
-    url: `/cdn/${version}/data/${lang}/champion.json`,
+    url: `/cdn/${param.version}/data/${param.lang}/champion.json`,
   });
   return data;
 }
-export async function getAllObjectData(lang: string, version: string): Promise<ItemData> {
+export async function getAllObjectData(param: { lang: string; version: string }): Promise<ItemData> {
   const { data } = await apiLol({
     method: "GET",
-    url: `/cdn/${version}/data/${lang}/item.json`,
+    url: `/cdn/${param.version}/data/${param.lang}/item.json`,
   });
   return data;
 }

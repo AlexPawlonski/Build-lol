@@ -2,14 +2,14 @@ import { ReactElement } from "react";
 import { classNames } from "../../../utils";
 import border from "../../../assets/borderChamp.webp";
 
-export interface IconProps {
+export interface Props {
   img: string;
   id: string;
   size?: string;
   onClick: (id: string) => void;
 }
 
-const ChampionButton = ({ img, id, size, onClick }: IconProps): ReactElement => {
+const ChampionButton = ({ img, id, size, onClick }: Props): ReactElement => {
   return (
     <button
       className={classNames(size, "group border-2 border-grey-2 hover:border-or-2 relative")}

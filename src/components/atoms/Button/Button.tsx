@@ -1,13 +1,13 @@
 import { ReactElement } from "react";
 import { classNames } from "../../../utils";
 
-export interface IconProps {
+export interface Props {
   size?: string;
   title: string;
   onClick: () => void;
 }
 
-const Button = ({ size, title, onClick }: IconProps): ReactElement => {
+const Button = ({ size, title, onClick }: Props): ReactElement => {
   return (
     <button
       className={classNames(

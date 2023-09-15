@@ -1,22 +1,20 @@
 /* eslint-disable no-console */
 import { ComponentStory, Meta } from "@storybook/react";
-import Button from "./Button";
+import ChampSelect from "./ChampSelect";
 
 export default {
-  component: Button,
-  title: "Atoms/Button",
+  component: ChampSelect,
+  title: "Organism/ChampSelect",
 } as Meta;
 
-const Template: ComponentStory<typeof Button> = (args) => {
+const Template: ComponentStory<typeof ChampSelect> = (args) => {
   return (
     <div className="h-14 w-52">
-      <Button {...args} />
+      <ChampSelect {...args} />
     </div>
   );
 };
 
-export const Default: ComponentStory<typeof Button> = Template.bind({});
-Default.args = { title: "CHAMPION", onClick: () => console.log("click!") };
-export const SizeLarge: ComponentStory<typeof Button> = Template.bind({});
-SizeLarge.args = { title: "CHAMPION", size: "w-52 h-21", onClick: () => console.log("click!") };
+export const Default: ComponentStory<typeof ChampSelect> = Template.bind({});
+Default.args = {};
 

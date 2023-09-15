@@ -1,9 +1,9 @@
 import { ReactElement } from "react";
 import { Button } from "../../atoms";
 
-export interface IconProps {}
+export interface Props {}
 
-const Nav = ({}: IconProps): ReactElement => {
+const Nav = ({}: Props): ReactElement => {
   return (
     <nav className="h-full w-[20%]">
       <ul className="w-full h-full gap-4 flex flex-col p-4">
