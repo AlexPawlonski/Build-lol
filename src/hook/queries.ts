@@ -1,5 +1,7 @@
 import { useMutation, useQuery } from "react-query";
-import { getAllChampionData, getAllObjectData, getLanguageCode, getRegion, getVersion } from "../api";
+import { getAllChampionData, getAllObjectData, getChampionData, getLanguageCode, getRegion, getVersion } from "../api";
+import { useContext } from "react";
+import { GlobalContext } from "../globalContext";
 
 export function useVersion() {
   return useQuery(["game-versions"], () => getVersion());
@@ -9,7 +11,7 @@ export function useLangueCode() {
   return useQuery(["game-langueCode"], () => getLanguageCode());
 }
 
-export function useInitChampion(lang: string, version: string) {
+export function useInitChampions(lang: string, version: string) {
   return useQuery(["game-ChampionList", lang, version], () => getAllChampionData({ lang, version }), {
     enabled: Boolean(lang && version),
   });
@@ -28,16 +30,22 @@ export function useInitRegion(region: string) {
 }
 
 export function useChampion() {
+  const { setChampSelected, setRouter } = useContext(GlobalContext);
   return useMutation({
-    mutationFn: (data: { lang: string; version: string }) => getAllChampionData(data),
-    onSuccess: (value) => console.log(value),
+    mutationFn: (data: { lang: string; version: string; id: string }) => getChampionData(data),
+    onSuccess: (value) => {
+      setChampSelected(Object.entries(value.data)[0][1]);
+      setRouter("data");
+    },
   });
 }
 
 export function useItems() {
   return useMutation({
     mutationFn: (data: { lang: string; version: string }) => getAllObjectData(data),
-    onSuccess: (value) => console.log(value),
+    onSuccess: (value) => {
+      console.log(value);
+    },
   });
 }
 

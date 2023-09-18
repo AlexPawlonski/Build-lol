@@ -4,6 +4,8 @@ import { Champion } from "./interface";
 interface GlobalContextType {
   language: string;
   setLanguage: (language: string) => void;
+  router: "data" | "champSelect";
+  setRouter: (router: "data" | "champSelect") => void;
   region: string;
   setRegion: (region: string) => void;
   version: string;
@@ -15,6 +17,7 @@ interface GlobalContextType {
 export const GlobalContext = createContext({} as GlobalContextType);
 
 export const GlobalContextProvider = ({ children }: { children: ReactElement }) => {
+  const [router, setRouter] = useState<"data" | "champSelect">("data");
   const [language, setLanguage] = useState("fr_FR");
   const [region, setRegion] = useState("EUW");
   const [version, setVersion] = useState("");
@@ -22,7 +25,18 @@ export const GlobalContextProvider = ({ children }: { children: ReactElement }) 
 
   return (
     <GlobalContext.Provider
-      value={{ language, setLanguage, region, setRegion, version, setVersion, champSelected, setChampSelected }}
+      value={{
+        language,
+        setLanguage,
+        router,
+        setRouter,
+        region,
+        setRegion,
+        version,
+        setVersion,
+        champSelected,
+        setChampSelected,
+      }}
     >
       {children}
     </GlobalContext.Provider>

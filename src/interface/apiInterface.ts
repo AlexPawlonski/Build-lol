@@ -74,6 +74,12 @@ export interface ChampionsData {
   version: string;
   data: Champion[];
 }
+export interface ChampionData {
+  format: string;
+  type: string;
+  version: string;
+  data: Champion;
+}
 
 export interface Item {
   name: string;

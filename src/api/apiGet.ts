@@ -1,4 +1,4 @@
-import { ChampionsData, ItemData, LeagueOfLegendsCDN } from "../interface";
+import { ChampionData, ChampionsData, ItemData, LeagueOfLegendsCDN } from "../interface";
 import { VITE_LOL_URL, apiLol } from "./axios";
 
 export async function getVersion(): Promise<string[]> {
@@ -30,6 +30,18 @@ export async function getAllChampionData(param: { lang: string; version: string 
   });
   return data;
 }
+export async function getChampionData(param: { lang: string; version: string; id: string }): Promise<ChampionData> {
+  const { data } = await apiLol({
+    method: "GET",
+    url: `/cdn/${param.version}/data/${param.lang}/champion/${param.id}.json`,
+  });
+  return data;
+}
+
+export function getChampionLoading(id: string): string {
+  return `${VITE_LOL_URL}/cdn/img/champion/loading/${id}_0.jpg`;
+}
+
 export function getChampionImg(id: string, version: string): string {
   return `${VITE_LOL_URL}/cdn/${version}/img/champion/${id}.png`;
 }

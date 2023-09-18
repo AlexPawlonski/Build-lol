@@ -1,6 +1,6 @@
 import { ReactElement, useContext, useMemo } from "react";
 import { GlobalContext } from "../../../globalContext";
-import { useInitChampion } from "../../../hook";
+import { useChampion, useInitChampions } from "../../../hook";
 import ChampionCard from "../../molecules/ChampionCard";
 
 export interface IconProps {}
@@ -8,7 +8,8 @@ export interface IconProps {}
 const ChampSelect = ({}: IconProps): ReactElement => {
   const { language, version } = useContext(GlobalContext);
 
-  const { data: champions, isLoading } = useInitChampion(language, version);
+  const { data: champions, isLoading } = useInitChampions(language, version);
+  const { mutate: getChampionSelect } = useChampion();
 
   const championsArray = useMemo(() => {
     if (champions?.data) {
@@ -20,7 +21,12 @@ const ChampSelect = ({}: IconProps): ReactElement => {
     <section className="w-full h-full p-6">
       <div className="flex flex-wrap overflow-scroll max-h-full">
         {!isLoading &&
-          championsArray?.map((item) => <ChampionCard champion={item} onClick={(id) => console.log(id)} />)}
+          championsArray?.map((item) => (
+            <ChampionCard
+              champion={item}
+              onClick={(id) => getChampionSelect({ lang: language, version: version, id: id })}
+            />
+          ))}
       </div>
     </section>
   );

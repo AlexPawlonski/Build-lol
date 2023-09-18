@@ -1,6 +1,6 @@
 import { ReactElement, useContext, useEffect, useState } from "react";
 import { Select } from "../../atoms";
-import { useInitRegion, useLangueCode, useRegion, useVersion } from "../../../hook";
+import { useChampion, useInitRegion, useLangueCode, useRegion, useVersion } from "../../../hook";
 import { selectFormat } from "../../../utils";
 import { GlobalContext } from "../../../globalContext";
 import logo from "../../../assets/League of Legends.svg";
@@ -9,13 +9,14 @@ export interface Props {}
 const Header = ({}: Props): ReactElement => {
   const [regionCode, setRegionCode] = useState("euw");
 
-  const { language, setLanguage, version, setVersion } = useContext(GlobalContext);
+  const { language, setLanguage, version, setVersion, champSelected } = useContext(GlobalContext);
 
   const { data: languageCode } = useLangueCode();
   const { data: region } = useInitRegion(regionCode);
   const { data: versions } = useVersion();
 
   const { mutate: updateReagion } = useRegion();
+  const { mutate: getChampionSelect } = useChampion();
 
   useEffect(() => {
     if (region?.css) {
@@ -25,6 +26,12 @@ const Header = ({}: Props): ReactElement => {
       setLanguage(region?.l);
     }
   }, [region]);
+
+  useEffect(() => {
+    if (champSelected?.id) {
+      getChampionSelect({ lang: language, version: version, id: champSelected.id });
+    }
+  }, [language, version]);
 
   return (
     <header className="w-full h-14 border-b-or-3 border-b-2 flex justify-between">

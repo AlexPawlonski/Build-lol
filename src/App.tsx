@@ -1,12 +1,17 @@
-import { ChampSelect, Header, Nav } from "./components/organism";
+import { useContext } from "react";
+import { ChampSelect, Header, Nav, DataView } from "./components/organism";
+import { GlobalContext } from "./globalContext";
 
 function App() {
+  const { router } = useContext(GlobalContext);
+
   return (
     <div>
       <Header />
       <main className="relative flex">
         <Nav />
-        <ChampSelect />
+        {router === "data" && <DataView />}
+        {router === "champSelect" && <ChampSelect />}
       </main>
     </div>
   );
