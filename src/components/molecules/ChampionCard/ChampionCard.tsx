@@ -1,11 +1,11 @@
 import { ReactElement, useContext } from "react";
-import { Champion } from "../../../interface";
+import { ChampionCompact } from "../../../interface";
 import { ChampionButton } from "../../atoms";
 import { GlobalContext } from "../../../globalContext";
 import { getChampionImg } from "../../../api";
 
 export interface Props {
-  champion: Champion;
+  champion: ChampionCompact;
   onClick: (value: string) => void;
 }
 

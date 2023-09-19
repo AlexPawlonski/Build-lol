@@ -21,8 +21,9 @@ const ChampSelect = ({}: IconProps): ReactElement => {
     <section className="w-full h-full p-6">
       <div className="flex flex-wrap overflow-scroll max-h-full">
         {!isLoading &&
-          championsArray?.map((item) => (
+          championsArray?.map((item, key) => (
             <ChampionCard
+              key={"champ-" + key}
               champion={item}
               onClick={(id) => getChampionSelect({ lang: language, version: version, id: id })}
             />

@@ -43,3 +43,11 @@ body {
 main {
   height: calc(100vh - 56px);
 }
+
+.triangle {
+  width: 5px;
+  height: 5px;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-bottom: 20px solid #c89b3c;
+}

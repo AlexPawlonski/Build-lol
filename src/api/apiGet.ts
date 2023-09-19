@@ -46,6 +46,14 @@ export function getChampionImg(id: string, version: string): string {
   return `${VITE_LOL_URL}/cdn/${version}/img/champion/${id}.png`;
 }
 
+export function getChampionSpellImg(id: string, version: string): string {
+  return `${VITE_LOL_URL}/cdn/${version}/img/spell/${id}.png`;
+}
+
+export function getChampionPassiveImg(id: string, version: string): string {
+  return `${VITE_LOL_URL}/cdn/${version}/img/passive/${id}.png`;
+}
+
 export async function getAllObjectData(param: { lang: string; version: string }): Promise<ItemData> {
   const { data } = await apiLol({
     method: "GET",
