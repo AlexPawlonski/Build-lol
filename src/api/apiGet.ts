@@ -43,15 +43,15 @@ export function getChampionLoading(id: string): string {
 }
 
 export function getChampionImg(id: string, version: string): string {
-  return `${VITE_LOL_URL}/cdn/${version}/img/champion/${id}.png`;
+  return `${VITE_LOL_URL}/cdn/${version}/img/champion/${id}`;
 }
 
 export function getChampionSpellImg(id: string, version: string): string {
-  return `${VITE_LOL_URL}/cdn/${version}/img/spell/${id}.png`;
+  return `${VITE_LOL_URL}/cdn/${version}/img/spell/${id}`;
 }
 
 export function getChampionPassiveImg(id: string, version: string): string {
-  return `${VITE_LOL_URL}/cdn/${version}/img/passive/${id}.png`;
+  return `${VITE_LOL_URL}/cdn/${version}/img/passive/${id}`;
 }
 
 export async function getAllObjectData(param: { lang: string; version: string }): Promise<ItemData> {

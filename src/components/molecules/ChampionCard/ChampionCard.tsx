@@ -11,11 +11,14 @@ export interface Props {
 
 const ChampionCard = ({ champion, onClick }: Props): ReactElement => {
   const { version } = useContext(GlobalContext);
-  const champImg = getChampionImg(champion.id, version);
 
   return (
     <div className="flex flex-col items-center mx-4">
-      <ChampionButton img={champImg} id={champion.id} onClick={(id) => onClick(id)} />
+      <ChampionButton
+        img={getChampionImg(champion.image.full, version)}
+        id={champion.id}
+        onClick={(id) => onClick(id)}
+      />
       <h2 className="mt-2 mb-4 text-grey-1">{champion.name}</h2>
     </div>
   );

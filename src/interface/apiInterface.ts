@@ -122,53 +122,57 @@ export interface Champion {
     attackspeedperlevel: number;
     attackspeed: number;
   };
-  spells: {
-    id: string;
-    name: string;
-    description: string;
-    tooltip: string;
-    leveltip: {
-      label: string[];
-      effect: string[];
-    };
-    maxrank: number;
-    cooldown: number[];
-    cooldownBurn: string;
-    cost: number[];
-    costBurn: string;
-    datavalues: any;
-    effect: (number | null)[][];
-    effectBurn: (string | null)[];
-    vars: any[];
-    costType: string;
-    maxammo: string;
-    range: number[];
-    rangeBurn: string;
-    image: {
-      full: string;
-      sprite: string;
-      group: string;
-      x: number;
-      y: number;
-      w: number;
-      h: number;
-    };
-    resource: string;
-  }[];
-  passive: {
-    name: string;
-    description: string;
-    image: {
-      full: string;
-      sprite: string;
-      group: string;
-      x: number;
-      y: number;
-      w: number;
-      h: number;
-    };
-  };
+  spells: Spell[];
+  passive: Passive;
   recommended: any[];
+}
+
+export interface Passive {
+  name: string;
+  description: string;
+  image: {
+    full: string;
+    sprite: string;
+    group: string;
+    x: number;
+    y: number;
+    w: number;
+    h: number;
+  };
+}
+
+export interface Spell {
+  id: string;
+  name: string;
+  description: string;
+  tooltip: string;
+  leveltip: {
+    label: string[];
+    effect: string[];
+  };
+  maxrank: number;
+  cooldown: number[];
+  cooldownBurn: string;
+  cost: number[];
+  costBurn: string;
+  datavalues: any;
+  effect: (number | null)[][];
+  effectBurn: (string | null)[];
+  vars: any[];
+  costType: string;
+  maxammo: string;
+  range: number[];
+  rangeBurn: string;
+  image: {
+    full: string;
+    sprite: string;
+    group: string;
+    x: number;
+    y: number;
+    w: number;
+    h: number;
+  };
+  resource: string;
 }
 
 export interface ChampionsData {

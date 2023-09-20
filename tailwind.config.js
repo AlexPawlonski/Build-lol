@@ -28,6 +28,11 @@ export default {
         5: "#1E282D",
         6: "#010A13",
       },
+      stats: {
+        hp: "#01b70a",
+        mp: "#116bca",
+        energie: "#e88a32",
+      },
     },
 
     extend: {
