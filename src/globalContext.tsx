@@ -17,7 +17,7 @@ interface GlobalContextType {
 export const GlobalContext = createContext({} as GlobalContextType);
 
 export const GlobalContextProvider = ({ children }: { children: ReactElement }) => {
-  const [router, setRouter] = useState<"data" | "champSelect">("data");
+  const [router, setRouter] = useState<"data" | "champSelect">("champSelect");
   const [language, setLanguage] = useState("fr_FR");
   const [region, setRegion] = useState("EUW");
   const [version, setVersion] = useState("");
