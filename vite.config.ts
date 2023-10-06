@@ -5,6 +5,7 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
   return {
     plugins: [react()],
+    base: "/BuildLol-React/",
     server: {
       port: parseInt(env.VITE_PORT),
     },
