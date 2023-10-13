@@ -23,8 +23,8 @@ const ChampionHud = ({ champSelected }: Props): ReactElement => {
       </div>
       <div className="flex gap-4">
         <Passive passive={passive} />
-        {spells.map((spell) => (
-          <Spell spell={spell} />
+        {spells.map((spell, key) => (
+          <Spell key={key} spell={spell} />
         ))}
       </div>
     </section>
@@ -32,4 +32,5 @@ const ChampionHud = ({ champSelected }: Props): ReactElement => {
 };
 
 export default ChampionHud;
+
 

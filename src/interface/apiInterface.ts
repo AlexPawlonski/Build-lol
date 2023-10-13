@@ -42,29 +42,8 @@ export interface ChampionCompact {
   };
   name: string;
   partype: string;
-  stats: {
-    hp: number;
-    hpperlevel: number;
-    mp: number;
-    mpperlevel: number;
-    movespeed: number;
-    armor: number;
-    armorperlevel: number;
-    spellblock: number;
-    spellblockperlevel: number;
-    attackrange: number;
-    hpregen: number;
-    hpregenperlevel: number;
-    mpregen: number;
-    mpregenperlevel: number;
-    crit: number;
-    critperlevel: number;
-    attackdamage: number;
-    attackdamageperlevel: number;
-    attackspeedperlevel: number;
-    attackspeed: number;
-  };
-  tags: string[];
+  stats: Stats;
+  tags: Tag[];
   title: string;
 }
 
@@ -92,7 +71,7 @@ export interface Champion {
   blurb: string;
   allytips: string[];
   enemytips: string[];
-  tags: string[];
+  tags: Tag[];
   partype: string;
   info: {
     attack: number;
@@ -264,4 +243,21 @@ export interface ItemData {
     id: string;
     MaxGroupOwnable: string;
   }[];
+}
+
+export enum Role {
+  Top = "Top",
+  Jungle = "Jungle",
+  Middle = "Middle",
+  Adc = "Adc",
+  Support = "Support",
+}
+
+export enum Tag {
+  Fighter = "Fighter",
+  Support = "Support",
+  Tank = "Tank",
+  Mage = "Mage",
+  Assassin = "Assassin",
+  Marksman = "Marksman",
 }

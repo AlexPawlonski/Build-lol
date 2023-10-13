@@ -43,9 +43,7 @@ export function useChampion() {
 export function useItems() {
   return useMutation({
     mutationFn: (data: { lang: string; version: string }) => getAllObjectData(data),
-    onSuccess: (value) => {
-      console.log(value);
-    },
+    onSuccess: (value) => console.log(value),
   });
 }
 
