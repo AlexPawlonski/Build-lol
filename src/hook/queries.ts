@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from "react-query";
-import { getAllChampionData, getAllObjectData, getChampionData, getLanguageCode, getRegion, getVersion } from "../api";
+import { getAllChampionData, getAllItemsData, getChampionData, getLanguageCode, getRegion, getVersion } from "../api";
 import { useContext } from "react";
 import { GlobalContext } from "../globalContext";
 
@@ -18,7 +18,7 @@ export function useInitChampions(lang: string, version: string) {
 }
 
 export function useInitItems(lang: string, version: string) {
-  return useQuery(["game-ItemList", lang, version], () => getAllObjectData({ lang, version }), {
+  return useQuery(["game-ItemList", lang, version], () => getAllItemsData({ lang, version }), {
     enabled: Boolean(lang && version),
   });
 }
@@ -37,13 +37,6 @@ export function useChampion() {
       setChampSelected(Object.entries(value.data)[0][1]);
       setRouter("data");
     },
-  });
-}
-
-export function useItems() {
-  return useMutation({
-    mutationFn: (data: { lang: string; version: string }) => getAllObjectData(data),
-    onSuccess: (value) => console.log(value),
   });
 }
 

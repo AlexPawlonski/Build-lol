@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Header, Nav } from "./components/organism";
+import { Header, Inventory, Nav } from "./components/organism";
 import { GlobalContext } from "./globalContext";
 import { ChampSelect, DataView } from "./page";
 
@@ -9,7 +9,10 @@ function App() {
     <div>
       <Header />
       <main className="relative flex">
-        <Nav />
+        <div className="w-[20%]">
+          <Nav />
+          {router === "data" && <Inventory />}
+        </div>
         {router === "data" && champSelected && <DataView champSelected={champSelected} />}
         {router === "champSelect" && <ChampSelect />}
       </main>

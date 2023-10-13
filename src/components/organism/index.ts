@@ -1,3 +1,4 @@
 import Nav from "./Nav";
 import Header from "./Header";
-export { Nav, Header };
+import Inventory from "./Inventory";
+export { Nav, Header, Inventory };
