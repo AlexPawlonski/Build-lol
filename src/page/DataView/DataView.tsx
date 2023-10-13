@@ -1,8 +1,6 @@
 import { ReactElement } from "react";
-import { ChampionLoadingImg, StatsTab } from "../../molecules";
-import ChampionHud from "../../molecules/ChampionHud";
-
-import { Champion } from "../../../interface";
+import { Champion } from "../../interface";
+import { ChampionHud, ChampionLoadingImg, StatsTab } from "../../components/molecules";
 
 export interface IconProps {
   champSelected: Champion;

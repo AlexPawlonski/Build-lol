@@ -1,6 +1,7 @@
 import { useContext } from "react";
-import { ChampSelect, Header, Nav, DataView } from "./components/organism";
+import { Header, Nav } from "./components/organism";
 import { GlobalContext } from "./globalContext";
+import { ChampSelect, DataView } from "./page";
 
 function App() {
   const { router, champSelected } = useContext(GlobalContext);

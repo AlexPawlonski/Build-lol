@@ -1,9 +1,8 @@
 import { ReactElement, useContext, useMemo, useState } from "react";
-import { GlobalContext } from "../../../globalContext";
-import { useChampion, useInitChampions } from "../../../hook";
-import ChampionCard from "../../molecules/ChampionCard";
-import FilterArea from "../../molecules/FilterArea";
-import { Role, Tag } from "../../../interface";
+import { GlobalContext } from "../../globalContext";
+import { Role, Tag } from "../../interface";
+import { useChampion, useInitChampions } from "../../hook";
+import { ChampionCard, FilterArea } from "../../components/molecules";
 
 export interface IconProps {}
 
