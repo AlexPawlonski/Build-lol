@@ -4,7 +4,6 @@ import { GlobalContext } from "./globalContext";
 
 function App() {
   const { router, champSelected } = useContext(GlobalContext);
-
   return (
     <div>
       <Header />

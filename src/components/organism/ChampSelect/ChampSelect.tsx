@@ -1,25 +1,57 @@
-import { ReactElement, useContext, useMemo } from "react";
+import { ReactElement, useContext, useMemo, useState } from "react";
 import { GlobalContext } from "../../../globalContext";
 import { useChampion, useInitChampions } from "../../../hook";
 import ChampionCard from "../../molecules/ChampionCard";
+import FilterArea from "../../molecules/FilterArea";
+import { Role, Tag } from "../../../interface";
 
 export interface IconProps {}
 
 const ChampSelect = ({}: IconProps): ReactElement => {
   const { language, version } = useContext(GlobalContext);
 
+  const [roleSelected, setRoleSelected] = useState<Role>();
+
+  const [nameSearch, setNameSearch] = useState<string>();
+
   const { data: champions, isLoading } = useInitChampions(language, version);
   const { mutate: getChampionSelect } = useChampion();
 
-  const championsArray = useMemo(() => {
-    if (champions?.data) {
-      return Object.entries(champions?.data).map((item) => item[1]);
+  function champDetectRole(tags: Tag[]) {
+    if (Boolean(tags.find((item) => item === Tag.Tank))) {
+      return Role.Top;
+    } else if (Boolean(tags.find((item) => item === Tag.Mage || item === Tag.Assassin))) {
+      return Role.Middle;
+    } else if (Boolean(tags.find((item) => item === Tag.Marksman))) {
+      return Role.Adc;
+    } else if (Boolean(tags.find((item) => item === Tag.Support))) {
+      return Role.Support;
+    } else {
+      return Role.Jungle;
     }
-  }, [champions]);
+  }
+
+  const championsArray = useMemo(() => {
+    if (champions?.data && !isLoading) {
+      let array = Object.entries(champions?.data).map((item) => item[1]);
+      if (roleSelected) {
+        array = array.filter((item) => champDetectRole(item.tags) === roleSelected);
+      }
+      if (nameSearch) {
+        array = array.filter((item) => item.name.toLowerCase().includes(nameSearch));
+      }
+      return array;
+    }
+  }, [champions, isLoading, nameSearch, roleSelected]);
 
   return (
     <section className="w-full h-full p-6">
-      <div className="flex flex-wrap overflow-scroll max-h-full">
+      <FilterArea
+        roleSelect={roleSelected}
+        setRoleSelected={(role) => setRoleSelected(role)}
+        nameSearch={(name) => setNameSearch(name)}
+      />
+      <div className="flex flex-wrap overflow-scroll max-h-full pt-1 mt-4" style={{ height: "calc(100% - 58px)" }}>
         {!isLoading &&
           championsArray?.map((item, key) => (
             <ChampionCard

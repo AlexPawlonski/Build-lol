@@ -25,8 +25,6 @@ export interface Props {
 }
 
 const StatItem = ({ label, value }: Props): ReactElement => {
-  console.log(label);
-
   function icon(key: string) {
     switch (key) {
       case "attackdamage":
