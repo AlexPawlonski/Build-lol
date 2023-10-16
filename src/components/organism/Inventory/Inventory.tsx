@@ -1,34 +1,37 @@
-import { ReactElement, useContext, useMemo } from "react";
-import { useInitItems } from "../../../hook";
+import { ReactElement, useContext, useMemo, useState } from "react";
 
+import { useInitItems } from "../../../hook";
 import { GlobalContext } from "../../../globalContext";
-import { ItemButton } from "../../atoms";
-import { getItemImg } from "../../../api";
+
+import { itemBytag } from "../../../utils";
+import { ItemsCategorie } from "../../molecules";
+import { ImputSearch } from "../../atoms";
 
 export interface Props {}
 
 const Header = ({}: Props): ReactElement => {
   const { language, version } = useContext(GlobalContext);
 
-  const { data: items, isLoading } = useInitItems(language, version);
+  const { data: items } = useInitItems(language, version);
+
+  const [itemSearch, setItemSearch] = useState("");
 
   const itemsArray = useMemo(() => {
-    return items && Object.entries(items?.data).map((item) => item[1]);
-  }, [items]);
+    if (items) {
+      const itemFilter = Object.entries(items?.data).map((item) => item[1]);
+      return itemFilter.filter((item) => item.name.toLowerCase().includes(itemSearch.toLowerCase()));
+    }
+  }, [items, itemSearch]);
+
+  const ItemBytag = useMemo(() => {
+    return itemsArray && Object.entries(itemBytag(itemsArray));
+  }, [itemsArray]);
 
   return (
-    <section className="p-4 flex">
-      <div className="flex flex-wrap justify-center gap-2 overflow-scroll" style={{ height: "calc(100vh - 180px)" }}>
-        {!isLoading &&
-          itemsArray?.map((item, key) => (
-            <ItemButton
-              key={key}
-              img={getItemImg(item.image.full, version)}
-              id={item.name}
-              size="w-10"
-              onClick={(id) => console.log(id)}
-            />
-          ))}
+    <section className="p-4">
+      <ImputSearch onChange={(search) => setItemSearch(search)} />
+      <div className="flex flex-wrap overflow-scroll no-scrollbar" style={{ height: "calc(100vh - 220px)" }}>
+        {ItemBytag && ItemBytag.map((item) => <ItemsCategorie categoryItem={item} />)}
       </div>
     </section>
   );

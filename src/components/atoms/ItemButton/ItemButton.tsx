@@ -10,7 +10,7 @@ export interface Props {
 const ItemButton = ({ img, id, size, onClick }: Props): ReactElement => {
   return (
     <button
-      className={classNames(size, "border-2 border-grey-2 hover:border-or-2")}
+      className={classNames(size, "border-2 border-grey-2 hover:border-or-2 m-1")}
       onClick={() => onClick(id)}
     >
       <img src={img} alt={`${img}-image`} className="w-full h-full" />

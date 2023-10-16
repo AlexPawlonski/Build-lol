@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Header, Inventory, Nav } from "./components/organism";
 import { GlobalContext } from "./globalContext";
 import { ChampSelect, DataView } from "./page";
+import { classNames } from "./utils";
 
 function App() {
   const { router, champSelected } = useContext(GlobalContext);
@@ -9,7 +10,7 @@ function App() {
     <div>
       <Header />
       <main className="relative flex">
-        <div className="w-[20%]">
+        <div className={classNames(champSelected && "w-[20%]")}>
           <Nav />
           {router === "data" && <Inventory />}
         </div>

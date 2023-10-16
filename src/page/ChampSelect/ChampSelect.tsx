@@ -37,7 +37,7 @@ const ChampSelect = ({}: IconProps): ReactElement => {
         array = array.filter((item) => champDetectRole(item.tags) === roleSelected);
       }
       if (nameSearch) {
-        array = array.filter((item) => item.name.toLowerCase().includes(nameSearch));
+        array = array.filter((item) => item.name.toLowerCase().includes(nameSearch.toLowerCase()));
       }
       return array;
     }
