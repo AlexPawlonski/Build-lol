@@ -22,16 +22,18 @@ const ItemsCategorie = ({ categoryItem }: Props): ReactElement => {
           <p className="text-xl capitalize mr-3">{categoryItem[0]}</p>
           <p className="max-w-min font-bold text-2xl">{isActive ? "-" : "+"}</p>
         </div>
-        {isActive &&
-          categoryItem[1]?.map((item, key) => (
-            <ItemButton
-              key={key}
-              img={getItemImg(item.image.full, version)}
-              id={item.name}
-              size="w-10"
-              onClick={(id) => console.log(id)}
-            />
-          ))}
+        <div className="flex flex-wrap w-full">
+          {isActive &&
+            categoryItem[1]?.map((item, key) => (
+              <ItemButton
+                key={key}
+                img={getItemImg(item.image.full, version)}
+                item={item}
+                size="w-10"
+                onClick={(id) => console.log(id)}
+              />
+            ))}
+        </div>
       </div>
     );
   } else {

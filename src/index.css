@@ -51,3 +51,7 @@ main {
   border-right: 15px solid transparent;
   border-bottom: 20px solid #c89b3c;
 }
+
+li {
+  list-style: none;
+}

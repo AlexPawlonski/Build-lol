@@ -5,7 +5,7 @@ import { ChampSelect, DataView } from "./page";
 import { classNames } from "./utils";
 
 function App() {
-  const { router, champSelected } = useContext(GlobalContext);
+  const { router, champSelected, itemHover } = useContext(GlobalContext);
   return (
     <div>
       <Header />
@@ -14,7 +14,7 @@ function App() {
           <Nav />
           {router === "data" && <Inventory />}
         </div>
-        {router === "data" && champSelected && <DataView champSelected={champSelected} />}
+        {router === "data" && champSelected && <DataView champSelected={champSelected} itemHover={itemHover} />}
         {router === "champSelect" && <ChampSelect />}
       </main>
     </div>

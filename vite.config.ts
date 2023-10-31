@@ -6,9 +6,10 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
   return {
     plugins: [react(), svgr()],
-    base: "/BuildLol-React/",
+    base: "/build-lol/",
     server: {
       port: parseInt(env.VITE_PORT),
     },
+    extensions: [".js", ".mjs"],
   };
 });

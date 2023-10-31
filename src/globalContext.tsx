@@ -1,5 +1,5 @@
 import { ReactElement, createContext, useState } from "react";
-import { Champion } from "./interface";
+import { Champion, Item } from "./interface";
 
 interface GlobalContextType {
   language: string;
@@ -12,6 +12,8 @@ interface GlobalContextType {
   setVersion: (version: string) => void;
   champSelected: Champion | undefined;
   setChampSelected: (champSelected: Champion) => void;
+  itemHover?: { position: { x: number; y: number }; item: Item };
+  setItemHover: (item?: { position: { x: number; y: number }; item: Item }) => void;
 }
 
 export const GlobalContext = createContext({} as GlobalContextType);
@@ -22,6 +24,7 @@ export const GlobalContextProvider = ({ children }: { children: ReactElement }) 
   const [region, setRegion] = useState("EUW");
   const [version, setVersion] = useState("");
   const [champSelected, setChampSelected] = useState<Champion>();
+  const [itemHover, setItemHover] = useState<{ position: { x: number; y: number }; item: Item }>();
 
   return (
     <GlobalContext.Provider
@@ -36,6 +39,8 @@ export const GlobalContextProvider = ({ children }: { children: ReactElement }) 
         setVersion,
         champSelected,
         setChampSelected,
+        itemHover,
+        setItemHover,
       }}
     >
       {children}
