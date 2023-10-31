@@ -1,17 +1,23 @@
 import { ReactElement } from "react";
-import { ChampionLoadingImg, StatsTab } from "../../molecules";
-import ChampionHud from "../../molecules/ChampionHud";
-
-import { Champion } from "../../../interface";
+import { Champion, Item } from "../../interface";
+import { ChampionHud, ChampionLoadingImg, ItemTooltip, StatsTab } from "../../components/molecules";
 
 export interface IconProps {
   champSelected: Champion;
+  itemHover?: {
+    position: {
+      x: number;
+      y: number;
+    };
+    item: Item;
+  };
 }
 
-const DataView = ({ champSelected }: IconProps): ReactElement => {
+const DataView = ({ champSelected, itemHover }: IconProps): ReactElement => {
   const stats = champSelected.stats;
   return (
     <section className="w-full h-full p-6">
+      {itemHover && <ItemTooltip item={itemHover.item} position={itemHover.position} />}
       <div className="flex gap-4 h-full">
         <div className="w-[20%]">
           <ChampionLoadingImg champSelected={champSelected} />

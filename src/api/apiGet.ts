@@ -54,7 +54,7 @@ export function getChampionPassiveImg(id: string, version: string): string {
   return `${VITE_LOL_URL}/cdn/${version}/img/passive/${id}`;
 }
 
-export async function getAllObjectData(param: { lang: string; version: string }): Promise<ItemData> {
+export async function getAllItemsData(param: { lang: string; version: string }): Promise<ItemData> {
   const { data } = await apiLol({
     method: "GET",
     url: `/cdn/${param.version}/data/${param.lang}/item.json`,
@@ -62,10 +62,10 @@ export async function getAllObjectData(param: { lang: string; version: string })
   return data;
 }
 
+export function getItemImg(id: string, version: string): string {
+  return `${VITE_LOL_URL}/cdn/${version}/img/item/${id}`;
+}
+
 // export async function getChampionSplash( id: string) {
 //   //http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Aatrox_0.jpg
-// }
-
-// export async function getItemIcon(id: string) {
-//   //http://ddragon.leagueoflegends.com/cdn/13.17.1/img/item/1001.png
 // }

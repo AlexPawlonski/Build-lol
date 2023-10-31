@@ -261,3 +261,26 @@ export enum Tag {
   Assassin = "Assassin",
   Marksman = "Marksman",
 }
+
+export enum TagItem {
+  Boots = "Boots",
+  ManaRegen = "ManaRegen",
+  HealthRegen = "HealthRegen",
+  Health = "Health",
+  Mana = "Mana",
+  Damage = "Damage",
+  CriticalStrike = "CriticalStrike",
+  SpellDamage = "SpellDamage",
+  SpellBlock = "SpellBlock",
+  Armor = "Armor",
+  LifeSteal = "LifeSteal",
+  AttackSpeed = "AttackSpeed",
+  Jungle = "Jungle",
+  Trinket = "Trinket",
+  OnHit = "OnHit",
+  Consumable = "Consumable",
+  Active = "Active",
+  NonbootsMovement = "NonbootsMovement",
+  MagicPenetration = "MagicPenetration",
+  GoldPer = "GoldPer",
+}
