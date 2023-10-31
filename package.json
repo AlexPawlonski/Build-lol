@@ -1,7 +1,7 @@
 {
   "name": "buildlolapp",
   "private": true,
-  "homepage": "https://AlexPawlonski.github.io/BuildLol-React/",
+  "homepage": "https://AlexPawlonski.github.io/Build-lol",
   "version": "0.0.0",
   "type": "module",
   "scripts": {

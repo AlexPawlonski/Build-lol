@@ -10,6 +10,5 @@ export default defineConfig(({ mode }) => {
     server: {
       port: parseInt(env.VITE_PORT),
     },
-    extensions: [".js", ".mjs"],
   };
 });
