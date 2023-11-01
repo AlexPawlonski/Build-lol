@@ -1,7 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
-import "./index.css";
+import "./css/index.css";
+import "unfonts.css";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { GlobalContextProvider } from "./globalContext.tsx";
 

@@ -14,19 +14,41 @@ const ItemTooltip = ({ item }: Props): ReactElement => {
   const { version } = useContext(GlobalContext);
   function formatHtml(text: string) {
     const verif = [
-      ["<maintext", '<div class="maintext"'],
+      ["<mainText", '<div class="maintext"'],
       ["<active", '<div class="active"'],
       ["<stats", '<div class="stats"'],
       ["<status", '<div class="status"'],
       ["<attention", '<div class="attention"'],
-      ["<scalearmor", '<div class="scalearmor"'],
+      ["<scaleArmor", '<div class="scalearmor"'],
       ["<scaleMR", '<div class="scaleMR"'],
+      ["<scaleAP", '<div class="scaleAP"'],
+      ["<scaleAD", '<div class="scaleAD"'],
       ["<passive", '<div class="passive"'],
-      ["<raritymythic", '<div class="raritymythic"'],
-      ["<raritylegendary", '<div class="raritylegendary"'],
+      ["<rarityMythic", '<div class="raritymythic"'],
+      ["<rarityLegendary", '<div class="raritylegendary"'],
+      ["<shield", '<div class="shield"'],
+      ["<scaleHealth", '<div class="scalehealth"'],
+      ["<scaleMana", '<div class="scaleMana"'],
+      ["<speed", '<div class="speed"'],
+      ["<keywordMajor", '<div class="keywordmajor"'],
+      ["<keywordStealth", '<div class="keywordstealth"'],
+      ["<unique", '<div class="unique"'],
+      ["<trueDamage", '<div class="truedamage"'],
+      ["<goldGain", '<div class="goldgain"'],
+      ["<attackSpeed", '<div class="attackspeed"'],
+      ["<rarityGeneric", '<div class="raritygeneric"'],
+      ["<rules", '<div class="rules"'],
+      ["<healing", '<div class="healing"'],
+      ["<flavortext", '<div class="flavortext"'],
+      ["<magicDamage", '<div class="magicdamage"'],
+      ["<OnHit", '<div class="onhit"'],
+      ["<scaleLethality", '<div class="scaleLethality"'],
+      ["<lifeSteal", '<div class="lifesteal"'],
     ];
 
     let updatedString = text;
+    console.log(updatedString);
+    
     verif.forEach(([search, replace]) => {
       updatedString = updatedString.replace(new RegExp(search, "g"), replace);
     });
