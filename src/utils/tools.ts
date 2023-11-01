@@ -112,7 +112,7 @@ export function itemBytag(itemsArray: Item[]) {
 export function clearListeAndSortByPrise(items: Item[]) {
   const clear: Item[] = [];
   items.forEach((item) => {
-    item.gold.purchasable && Object.entries(item.maps)[0][1] && clear.push(item);
+    item.gold.purchasable && item.gold.total > 0 && Object.entries(item.maps)[0][1] && clear.push(item);
   });
   clear.sort((item1, item2) => item1.gold.total - item2.gold.total);
   return [...clear];

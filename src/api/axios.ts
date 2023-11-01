@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig } from "axios";
 
-export const { VITE_LOL_URL } = import.meta.env;
+export const VITE_LOL_URL = "https://ddragon.leagueoflegends.com";
 
 export const apiLol = createAxios({ baseURL: VITE_LOL_URL });
 
