@@ -2,7 +2,6 @@ import { ReactElement } from "react";
 import { Champion, Item } from "../../interface";
 import { ChampionHud, ChampionLoadingImg, ItemTooltip, StatsTab } from "../../components/molecules";
 import { InventoryChampion } from "../../components/organism";
-
 export interface IconProps {
   champSelected: Champion;
   itemHover?: {
@@ -59,4 +58,3 @@ const DataView = ({ champSelected, itemHover }: IconProps): ReactElement => {
 };
 
 export default DataView;
-

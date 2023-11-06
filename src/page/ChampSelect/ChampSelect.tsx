@@ -50,7 +50,7 @@ const ChampSelect = ({}: IconProps): ReactElement => {
         setRoleSelected={(role) => setRoleSelected(role)}
         nameSearch={(name) => setNameSearch(name)}
       />
-      <div className="flex flex-wrap overflow-scroll max-h-full pt-1 mt-4" style={{ height: "calc(100% - 58px)" }}>
+      <div className="flex flex-wrap overflow-scroll max-h-full pt-1 mt-4" style={{ height: "calc(100% - 150px)" }}>
         {!isLoading &&
           championsArray?.map((item, key) => (
             <ChampionCard
