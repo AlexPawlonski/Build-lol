@@ -12,5 +12,4 @@ const Template: ComponentStory<typeof ItemInventory> = (args) => {
 };
 
 export const Default: ComponentStory<typeof ItemInventory> = Template.bind({});
-Default.args = { size: "w-52 h-52"};
-
+Default.args = {};
