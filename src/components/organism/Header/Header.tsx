@@ -4,12 +4,14 @@ import { useChampion, useInitRegion, useLangueCode, useRegion, useVersion } from
 import { filterLangueListe, selectFormat } from "../../../utils";
 import { GlobalContext } from "../../../globalContext";
 import logo from "../../../assets/League of Legends.svg";
+import { useTranslation } from "react-i18next";
 export interface Props {}
 
 const Header = ({}: Props): ReactElement => {
   const [regionCode, setRegionCode] = useState("euw");
 
   const { language, setLanguage, version, setVersion, champSelected } = useContext(GlobalContext);
+  const { i18n } = useTranslation();
 
   const { data: languageCode } = useLangueCode();
   const { data: region } = useInitRegion(regionCode);
@@ -39,8 +41,13 @@ const Header = ({}: Props): ReactElement => {
       <div className="flex gap-x-2 p-2">
         {languageCode && (
           <Select
-            options={selectFormat(filterLangueListe(languageCode,["fr_FR", "en_US","en_GB", "es_ES" ]))}
-            onChange={(value) => setLanguage(value)}
+            options={selectFormat(filterLangueListe(languageCode, ["fr_FR", "en_US", "es_ES"]))}
+            onChange={(value) => {
+              setLanguage(value);
+              console.log(value);
+              
+              i18n.changeLanguage(value);
+            }}
             defaultValue={language}
           />
         )}
@@ -55,6 +62,7 @@ const Header = ({}: Props): ReactElement => {
               onSuccess: (data) => {
                 setRegionCode(value);
                 setLanguage(data.lg);
+                i18n.changeLanguage(data.lg);
                 setVersion(data.css);
               },
             })
@@ -66,4 +74,3 @@ const Header = ({}: Props): ReactElement => {
 };
 
 export default Header;
-
