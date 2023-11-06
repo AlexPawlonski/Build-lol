@@ -245,6 +245,10 @@ export interface ItemData {
   }[];
 }
 
+export interface Inventory {
+  [key: string]: Item | undefined;
+}
+
 export enum Role {
   Top = "Top",
   Jungle = "Jungle",

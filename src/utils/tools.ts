@@ -4,6 +4,10 @@ export function classNames(...classes: (false | null | undefined | string)[]): s
   return classes.filter(Boolean).join(" ");
 }
 
+export function filterLangueListe(langueList: string[], langueSelect: string[]): string[]{
+  return langueList.filter((search) => langueSelect.find((item) => item === search ))
+}
+
 export function selectFormat(array: string[]) {
   return array.map((item) => ({ label: item, value: item }));
 }

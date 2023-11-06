@@ -47,7 +47,6 @@ const ItemTooltip = ({ item }: Props): ReactElement => {
     ];
 
     let updatedString = text;
-    console.log(updatedString);
     
     verif.forEach(([search, replace]) => {
       updatedString = updatedString.replace(new RegExp(search, "g"), replace);

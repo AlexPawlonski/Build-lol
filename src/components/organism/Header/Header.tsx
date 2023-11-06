@@ -1,7 +1,7 @@
 import { ReactElement, useContext, useEffect, useState } from "react";
 import { Select } from "../../atoms";
 import { useChampion, useInitRegion, useLangueCode, useRegion, useVersion } from "../../../hook";
-import { selectFormat } from "../../../utils";
+import { filterLangueListe, selectFormat } from "../../../utils";
 import { GlobalContext } from "../../../globalContext";
 import logo from "../../../assets/League of Legends.svg";
 export interface Props {}
@@ -39,7 +39,7 @@ const Header = ({}: Props): ReactElement => {
       <div className="flex gap-x-2 p-2">
         {languageCode && (
           <Select
-            options={selectFormat(languageCode)}
+            options={selectFormat(filterLangueListe(languageCode,["fr_FR", "en_US","en_GB", "es_ES" ]))}
             onChange={(value) => setLanguage(value)}
             defaultValue={language}
           />
