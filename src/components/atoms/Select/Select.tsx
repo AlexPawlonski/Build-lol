@@ -1,4 +1,5 @@
 import { ReactElement } from "react";
+import { useTranslation } from "react-i18next";
 
 export interface Props {
   defaultValue: string;
@@ -7,15 +8,17 @@ export interface Props {
 }
 
 const ChampionButton = ({ onChange, options, defaultValue }: Props): ReactElement => {
+  const { t } = useTranslation();
   return (
     <select
-      className="w-28 bg-blue-6 border-or-3 border-2 text-or-3 text-center py-1 uppercase"
+      className="px-4 bg-blue-6 border-or-3 border-2 text-or-3 text-center py-1 cursor-pointer"
       onChange={(value) => onChange(value.currentTarget.value)}
       value={defaultValue}
+      style={{ appearance: "none" }}
     >
       {options.map((option, key) => (
         <option key={`option-${key}`} value={option.value}>
-          {option.label}
+          {t(option.label)}
         </option>
       ))}
     </select>

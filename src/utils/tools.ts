@@ -4,8 +4,12 @@ export function classNames(...classes: (false | null | undefined | string)[]): s
   return classes.filter(Boolean).join(" ");
 }
 
-export function filterLangueListe(langueList: string[], langueSelect: string[]): string[]{
-  return langueList.filter((search) => langueSelect.find((item) => item === search ))
+export function filterLangueListe(langueList: string[], langueSelect: string[]): string[] {
+  return langueList.filter((search) => langueSelect.find((item) => item === search));
+}
+
+export function formatForTraduction(type: "lang" | "region", array: string[]) {
+  return array.map((item) => ({ label: `${type}.${item}`, value: item }));
 }
 
 export function selectFormat(array: string[]) {

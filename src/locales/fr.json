@@ -12,5 +12,9 @@
     "fr_FR": "Français",
     "en_US": "Anglais",
     "es_ES": "Espagnol"
+  },
+  "region":{
+    "euw": "Eupore de l'Ouest",
+    "na": "Amérique"
   }
 }
