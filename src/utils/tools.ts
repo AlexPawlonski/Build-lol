@@ -5,8 +5,6 @@ export function classNames(...classes: (false | null | undefined | string)[]): s
 }
 
 export function filterLangueListe(langueList: string[], langueSelect: string[]): string[]{
-  console.log(langueList, langueSelect);
-  
   return langueList.filter((search) => langueSelect.find((item) => item === search ))
 }
 

@@ -1,5 +1,5 @@
 import { ReactElement, createContext, useState } from "react";
-import { Champion, Item } from "./interface";
+import { Champion, Inventory, Item } from "./interface";
 
 interface GlobalContextType {
   language: string;
@@ -14,17 +14,29 @@ interface GlobalContextType {
   setChampSelected: (champSelected: Champion) => void;
   itemHover?: { position: { x: number; y: number }; item: Item };
   setItemHover: (item?: { position: { x: number; y: number }; item: Item }) => void;
+  champInventory: Inventory;
+  setChampInventory: (inventory: Inventory) => void;
 }
 
 export const GlobalContext = createContext({} as GlobalContextType);
 
 export const GlobalContextProvider = ({ children }: { children: ReactElement }) => {
+  const defaultInventory: Inventory = {
+    item1: undefined,
+    item2: undefined,
+    item3: undefined,
+    item4: undefined,
+    item5: undefined,
+    item6: undefined,
+  };
+
   const [router, setRouter] = useState<"data" | "champSelect">("champSelect");
   const [language, setLanguage] = useState("fr_FR");
   const [region, setRegion] = useState("EUW");
   const [version, setVersion] = useState("");
   const [champSelected, setChampSelected] = useState<Champion>();
   const [itemHover, setItemHover] = useState<{ position: { x: number; y: number }; item: Item }>();
+  const [champInventory, setChampInventory] = useState<Inventory>(defaultInventory);
 
   return (
     <GlobalContext.Provider
@@ -41,6 +53,8 @@ export const GlobalContextProvider = ({ children }: { children: ReactElement }) 
         setChampSelected,
         itemHover,
         setItemHover,
+        champInventory,
+        setChampInventory,
       }}
     >
       {children}

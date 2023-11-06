@@ -1,7 +1,7 @@
 import { ReactElement } from "react";
 import { Champion, Item } from "../../interface";
 import { ChampionHud, ChampionLoadingImg, ItemTooltip, StatsTab } from "../../components/molecules";
-
+import { InventoryChampion } from "../../components/organism";
 export interface IconProps {
   champSelected: Champion;
   itemHover?: {
@@ -21,7 +21,7 @@ const DataView = ({ champSelected, itemHover }: IconProps): ReactElement => {
       <div className="flex gap-4 h-full">
         <div className="w-[20%]">
           <ChampionLoadingImg champSelected={champSelected} />
-          <p className="mt-4">{champSelected.lore}</p>
+          <InventoryChampion />
         </div>
         <div className="w-[80%]">
           <ChampionHud champSelected={champSelected} />
@@ -58,4 +58,3 @@ const DataView = ({ champSelected, itemHover }: IconProps): ReactElement => {
 };
 
 export default DataView;
-
