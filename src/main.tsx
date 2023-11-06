@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import "./css/index.css";
 import "unfonts.css";
+import "./i18n.ts";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { GlobalContextProvider } from "./globalContext.tsx";
 

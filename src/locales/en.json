@@ -1,0 +1,16 @@
+{
+  "champion": "Champion",
+  "selectChampion": "Champ'Select",
+  "back": "Back",
+  "search": "Search",
+  "help": {
+    "addItem": "Drag an item from the inventory to add it to your champion!",
+    "deleteItem": "Drag to delete the item"
+  },
+  "gold": "Gold",
+  "lang": {
+    "fr_FR": "French",
+    "en_US": "English",
+    "es_ES": "Spanish"
+  }
+}
