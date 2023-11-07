@@ -32,7 +32,7 @@ export const GlobalContextProvider = ({ children }: { children: ReactElement }) 
 
   const [router, setRouter] = useState<"data" | "champSelect">("champSelect");
   const [language, setLanguage] = useState("fr_FR");
-  const [region, setRegion] = useState("EUW");
+  const [region, setRegion] = useState("euw");
   const [version, setVersion] = useState("");
   const [champSelected, setChampSelected] = useState<Champion>();
   const [itemHover, setItemHover] = useState<{ position: { x: number; y: number }; item: Item }>();

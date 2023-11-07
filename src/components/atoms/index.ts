@@ -5,10 +5,25 @@ import ImputSearch from "./ImputSearch";
 import ItemButton from "./ItemButton";
 import ItemInventory from "./ItemInventory";
 import Level from "./Level";
+import NavItem from "./NavItem";
 import Passive from "./Passive";
 import RoleButton from "./RoleButton";
 import Select from "./Select";
 import Spell from "./Spell";
 import StatItem from "./StatItem";
 
-export { Button, ChampionButton, Select, Spell, Bar, Level, Passive, StatItem, RoleButton, ItemInventory, ImputSearch, ItemButton };
+export {
+  NavItem,
+  Button,
+  ChampionButton,
+  Select,
+  Spell,
+  Bar,
+  Level,
+  Passive,
+  StatItem,
+  RoleButton,
+  ItemInventory,
+  ImputSearch,
+  ItemButton,
+};
