@@ -1,7 +1,7 @@
 import { ReactElement } from "react";
 import { Champion, Item } from "../../interface";
 import { ChampionHud, ChampionLoadingImg, ItemTooltip, StatsTab } from "../../components/molecules";
-import { InventoryChampion } from "../../components/organism";
+import { Inventory, InventoryChampion } from "../../components/organism";
 export interface IconProps {
   champSelected: Champion;
   itemHover?: {
@@ -16,9 +16,12 @@ export interface IconProps {
 const DataView = ({ champSelected, itemHover }: IconProps): ReactElement => {
   const stats = champSelected.stats;
   return (
-    <section className="w-full h-full p-6">
+    <section className="w-full h-full flex gap-6 p-6">
       {itemHover && <ItemTooltip item={itemHover.item} position={itemHover.position} />}
-      <div className="flex gap-4 h-full">
+      <div className="w-[20%]">
+        <Inventory />
+      </div>
+      <div className="flex gap-4 h-full w-[80%]">
         <div className="w-[20%]">
           <ChampionLoadingImg champSelected={champSelected} />
           <InventoryChampion />

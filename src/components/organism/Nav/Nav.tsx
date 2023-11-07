@@ -1,7 +1,8 @@
 import { ReactElement, useContext } from "react";
-import { Button } from "../../atoms";
+import { NavItem } from "../../atoms";
 import { GlobalContext } from "../../../globalContext";
 import { useTranslation } from "react-i18next";
+import { BuilderIcon, ChampionIcon } from "../../../assets/iconSvg";
 
 export interface Props {}
 
@@ -9,18 +10,25 @@ const Nav = ({}: Props): ReactElement => {
   const { router, setRouter, champSelected } = useContext(GlobalContext);
   const { t } = useTranslation();
   return (
-    <nav className="w-full">
-      <ul className="w-full gap-4 flex flex-col p-4">
-        <li className="w-full">
-          {router === "data" && <Button title={t("selectChampion")} onClick={() => setRouter("champSelect")} size="w-full" />}
-          {router === "champSelect" && champSelected && (
-            <Button title={t("back")}  onClick={() => setRouter("data")} size="w-full" />
-          )}
-        </li>
-      </ul>
+    <nav className="h-full flex">
+      {champSelected && (
+        <>
+          <NavItem
+            title={t("selectChampion")}
+            icon={<ChampionIcon className="w-7 p-1" />}
+            onClick={() => setRouter("champSelect")}
+            canClick={router === "data"}
+          />
+          <NavItem
+            title={t("builderChampion")}
+            icon={<BuilderIcon className="w-7" />}
+            onClick={() => setRouter("data")}
+            canClick={Boolean(router === "champSelect" && champSelected)}
+          />
+        </>
+      )}
     </nav>
   );
 };
 
 export default Nav;
-
