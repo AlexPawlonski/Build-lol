@@ -1,0 +1,20 @@
+{
+  "champion": "Champion",
+  "selectChampion": "Sélection des champions",
+  "back": "Retour",
+  "search": "Chercher",
+  "help": {
+    "addItem": "Faite glisser un item de l'inventaire pour l'ajouter à votre champion !",
+    "deleteItem": "Glisser pour supprimer l'objet"
+  },
+  "gold": "Or",
+  "lang": {
+    "fr_FR": "Français",
+    "en_US": "Anglais",
+    "es_ES": "Espagnol"
+  },
+  "region":{
+    "euw": "Eupore de l'Ouest",
+    "na": "Amérique"
+  }
+}

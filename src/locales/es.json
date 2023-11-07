@@ -1,0 +1,20 @@
+{
+  "champion": "Champion",
+  "selectChampion": "Selección de campeones",
+  "back": "Retour",
+  "search": "Buscar",
+  "help": {
+    "addItem": "¡Arrastra un objeto del inventario para agregarlo a tu campeón!",
+    "deleteItem": "Arrastra para eliminar el objeto"
+  },
+  "gold": "Oro",
+  "lang": {
+    "fr_FR": "Francés",
+    "en_US": "Inglés",
+    "es_ES": "Español"
+  },
+  "region":{
+    "euw": "Europa Occidental", 
+    "na": "América" 
+  }
+}
