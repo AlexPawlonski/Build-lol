@@ -28,9 +28,9 @@ const Header = ({}: Props): ReactElement => {
   }, [itemsArray]);
 
   return (
-    <section className="p-4">
+    <section>
       <ImputSearch onChange={(search) => setItemSearch(search)} />
-      <div className="flex flex-wrap overflow-scroll no-scrollbar" style={{ height: "calc(100vh - 220px)" }}>
+      <div className="flex flex-wrap overflow-scroll no-scrollbar" style={{ height: "calc(100vh - 150px)" }}>
         {ItemBytag && ItemBytag.map((item, key) => <ItemsCategorie key={key} categoryItem={item} />)}
       </div>
     </section>

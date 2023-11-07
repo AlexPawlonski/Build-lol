@@ -4,8 +4,17 @@ export function classNames(...classes: (false | null | undefined | string)[]): s
   return classes.filter(Boolean).join(" ");
 }
 
-export function filterLangueListe(langueList: string[], langueSelect: string[]): string[] {
-  return langueList.filter((search) => langueSelect.find((item) => item === search));
+export function filterLangueListe(langueList: string[], langueSelect: string[], expected: string): string[] {
+  return langueList.filter((search) =>
+    langueSelect.find((item) => {
+      if (item === expected) {
+        return false;
+      }
+      if (item === search) {
+        return true;
+      }
+    }),
+  );
 }
 
 export function formatForTraduction(type: "lang" | "region", array: string[]) {
@@ -14,6 +23,40 @@ export function formatForTraduction(type: "lang" | "region", array: string[]) {
 
 export function selectFormat(array: string[]) {
   return array.map((item) => ({ label: item, value: item }));
+}
+
+export function usToEN(lgn: string) {
+  if (lgn === "en_US") {
+    return "en_GB";
+  } else {
+    return lgn;
+  }
+}
+
+export function filterVersion(versionArray: string[]) {
+  const arrayFilter = versionArray
+    .filter((version, index, array) => {
+      const [maj] = version.split(".");
+      const currentMajorVersion = parseInt(maj, 10);
+      const nextVersion = array[index + 1];
+      if (nextVersion) {
+        const [nextMaj] = nextVersion.split(".");
+        const nextMajorVersion = parseInt(nextMaj, 10);
+        return currentMajorVersion !== nextMajorVersion;
+      }
+      return true;
+    })
+    .reduce((result: string[], version) => {
+      const [maj] = version.split(".");
+      const currentMajorVersion = parseInt(maj, 10);
+      const existingMajorVersion = result.find((v) => v === JSON.stringify(currentMajorVersion));
+      if (!existingMajorVersion) {
+        result.push(version);
+      }
+      return result;
+    }, [])
+    .slice(0, 8);
+  return [versionArray[0], ...arrayFilter];
 }
 
 export function itemBytag(itemsArray: Item[]) {

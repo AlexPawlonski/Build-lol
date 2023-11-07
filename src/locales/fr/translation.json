@@ -1,6 +1,7 @@
 {
   "champion": "Champion",
   "selectChampion": "Sélection des champions",
+  "builderChampion": "Constructeur de build",
   "back": "Retour",
   "search": "Chercher",
   "help": {
@@ -10,7 +11,7 @@
   "gold": "Or",
   "lang": {
     "fr_FR": "Français",
-    "en_US": "Anglais",
+    "en_GB": "Anglais",
     "es_ES": "Espagnol"
   },
   "region":{
