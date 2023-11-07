@@ -1,5 +1,7 @@
 import { ReactElement, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { CaretUpSolid } from "../../../assets/iconSvg";
+import { classNames } from "../../../utils";
 
 export interface Props {
   defaultValue: string;
@@ -28,15 +30,16 @@ const ChampionButton = ({ onChange, type, options, defaultValue }: Props): React
   }, []);
 
   return (
-    <div ref={ref} className=" min-w-max">
+    <div ref={ref} className="min-w-max font-BeaufortforLOL uppercase">
       <div
-        className="px-4 bg-blue-6 border-or-3 border-2 text-or-3 text-center py-1 cursor-pointer min-w-max"
+        className="px-4 bg-blue-6 text-or-3 text-center py-1 cursor-pointer min-w-max flex justify-center items-center gap-2 "
         onClick={() => setIsActive((oldState) => !oldState)}
       >
         <p>{type ? t(`${type}.${defaultValue}`) : defaultValue}</p>
+        <CaretUpSolid className={classNames("fill-or-3 h-4 mt-1 transform transition-all", !isActive && "rotate-[180deg]")} />
       </div>
       {isActive && (
-        <ul className="bg-blue-6 p-2 max-h-[20vh] overflow-scroll">
+        <ul className="bg-blue-6 max-h-[20vh] overflow-scroll border-2 border-or-3 ">
           {options.map((option, key) => (
             <li
               key={`option-${key}`}
@@ -44,7 +47,7 @@ const ChampionButton = ({ onChange, type, options, defaultValue }: Props): React
                 console.log(option.value);
                 onChange(option.value);
               }}
-              className="hover:bg-or-2 cursor-pointer"
+              className="hover:bg-or-3 border-[1px] border-or-3 border-opacity-5 hover:bg-opacity-10 cursor-pointer px-4 py-2"
             >
               {t(option.label)}
             </li>
