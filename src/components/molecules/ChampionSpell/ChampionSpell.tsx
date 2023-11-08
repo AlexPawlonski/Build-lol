@@ -11,10 +11,10 @@ const ChampionSpell = ({ champSelected }: Props): ReactElement => {
   const passive = champSelected.passive;
 
   return (
-    <section className="w-full flex gap-4">
+    <section className="w-full flex flex-col gap-4">
       <Passive passive={passive} />
       {spells.map((spell, key) => (
-        <Spell key={key} spell={spell} />
+        <Spell key={key} spell={spell} keyId={key} />
       ))}
     </section>
   );

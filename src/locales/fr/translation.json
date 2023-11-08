@@ -14,7 +14,9 @@
     "en_GB": "Anglais",
     "es_ES": "Espagnol"
   },
-  "level": "niveau",
+  "level": "Niveau",
+  "passive": "Passif",
+  "spell": "Sort d'invocateur",
   "region":{
     "euw": "Eupore de l'Ouest",
     "na": "Amérique"
