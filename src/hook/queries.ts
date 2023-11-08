@@ -2,6 +2,7 @@ import { useMutation, useQuery } from "react-query";
 import { getAllChampionData, getAllItemsData, getChampionData, getLanguageCode, getRegion, getVersion } from "../api";
 import { useContext } from "react";
 import { GlobalContext } from "../globalContext";
+import { Champion, ChampionStats, PerLvlStats } from "../interface";
 
 export function useVersion() {
   return useQuery(["game-versions"], () => getVersion());
@@ -30,11 +31,39 @@ export function useInitRegion(region: string) {
 }
 
 export function useChampion() {
-  const { setChampSelected, setRouter } = useContext(GlobalContext);
+  const { setChampSelected, setRouter, setChampStats, setChampPerLvl } = useContext(GlobalContext);
   return useMutation({
     mutationFn: (data: { lang: string; version: string; id: string }) => getChampionData(data),
     onSuccess: (value) => {
-      setChampSelected(Object.entries(value.data)[0][1]);
+      const championSelected: Champion = Object.entries(value.data)[0][1];
+      const defaultChampStats: ChampionStats = {
+        armor: championSelected.stats.armor,
+        attackdamage: championSelected.stats.attackdamage,
+        attackrange: championSelected.stats.attackrange,
+        attackspeed: championSelected.stats.attackspeed,
+        crit: championSelected.stats.crit,
+        hp: championSelected.stats.hp,
+        hpregen: championSelected.stats.hpregen,
+        movespeed: championSelected.stats.movespeed,
+        mp: championSelected.stats.hp,
+        mpregen: championSelected.stats.mpregen,
+        spellblock: championSelected.stats.spellblock,
+      };
+
+      const defaultChampPerLvl: PerLvlStats = {
+        hpperlevel: championSelected.stats.hpperlevel,
+        mpperlevel: championSelected.stats.mpperlevel,
+        armorperlevel: championSelected.stats.armorperlevel,
+        spellblockperlevel: championSelected.stats.spellblockperlevel,
+        hpregenperlevel: championSelected.stats.hpregenperlevel,
+        mpregenperlevel: championSelected.stats.mpregenperlevel,
+        critperlevel: championSelected.stats.critperlevel,
+        attackdamageperlevel: championSelected.stats.attackdamageperlevel,
+        attackspeedperlevel: championSelected.stats.attackspeedperlevel,
+      };
+      setChampSelected(championSelected);
+      setChampStats(defaultChampStats);
+      setChampPerLvl(defaultChampPerLvl);
       setRouter("data");
     },
   });

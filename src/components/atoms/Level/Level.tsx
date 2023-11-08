@@ -1,30 +1,43 @@
-import { ReactElement, useEffect, useState } from "react";
+import { ReactElement, useContext } from "react";
+import { CaretUpSolid } from "../../../assets/iconSvg";
+import { useTranslation } from "react-i18next";
+import { GlobalContext } from "../../../globalContext";
+import { changeStatsPerLvl } from "../../../utils";
+import { PerLvlStats, Stats } from "../../../interface";
 
 export interface Props {
-  onChange: (level: number) => void;
+  champSelectStats: Stats;
+  champPerLvl: PerLvlStats;
 }
 
-const Level = ({ onChange }: Props): ReactElement => {
-  const [level, setLevel] = useState(1);
-
-  useEffect(() => {
-    onChange(level);
-  }, [level]);
-
+const Level = ({ champSelectStats, champPerLvl }: Props): ReactElement => {
+  const { t } = useTranslation();
+  const { level, setLevel, setChampStats } = useContext(GlobalContext);
   return (
-    <div className="flex items-center">
-      <div
-        className="triangle transform rotate-[-90deg]"
-        onClick={() => level !== 1 && setLevel((oldState) => oldState - 1)}
-      ></div>
-      <p>{level} LV</p>
-      <div
-        className="triangle transform rotate-[90deg]"
-        onClick={() => level !== 16 && setLevel((oldState) => oldState + 1)}
-      ></div>
+    <div className="flex items-center gap-2">
+      <CaretUpSolid
+        className="transform rotate-[-90deg] fill-or-3 w-6"
+        onClick={() => {
+          if (level !== 1) {
+            setLevel(level - 1);
+            setChampStats(changeStatsPerLvl(champSelectStats, champPerLvl, level - 1));
+          }
+        }}
+      />
+      <p className="beaufortforLOL text-2xl text-or-2 uppercase">
+        {t("level")} {level}
+      </p>
+      <CaretUpSolid
+        className="transform rotate-[90deg] fill-or-3 w-6"
+        onClick={() => {
+          if (level !== 18) {
+            setLevel(level + 1);
+            setChampStats(changeStatsPerLvl(champSelectStats, champPerLvl, level + 1));
+          }
+        }}
+      />
     </div>
   );
 };
 
 export default Level;
-

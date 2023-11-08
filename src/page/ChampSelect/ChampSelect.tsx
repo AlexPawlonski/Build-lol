@@ -7,7 +7,7 @@ import { ChampionCard, FilterArea } from "../../components/molecules";
 export interface IconProps {}
 
 const ChampSelect = ({}: IconProps): ReactElement => {
-  const { language, version } = useContext(GlobalContext);
+  const { language, version, setLevel } = useContext(GlobalContext);
 
   const [roleSelected, setRoleSelected] = useState<Role>();
 
@@ -56,7 +56,10 @@ const ChampSelect = ({}: IconProps): ReactElement => {
             <ChampionCard
               key={"champ-" + key}
               champion={item}
-              onClick={(id) => getChampionSelect({ lang: language, version: version, id: id })}
+              onClick={(id) => {
+                setLevel(1); //reset lvl when champion change
+                getChampionSelect({ lang: language, version: version, id: id });
+              }}
             />
           ))}
       </div>
@@ -65,4 +68,3 @@ const ChampSelect = ({}: IconProps): ReactElement => {
 };
 
 export default ChampSelect;
-

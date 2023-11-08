@@ -1,60 +1,57 @@
-import { ReactElement } from "react";
-import { Champion, Item } from "../../interface";
-import { ChampionHud, ChampionLoadingImg, ItemTooltip, StatsTab } from "../../components/molecules";
+import { ReactElement, useContext } from "react";
+import { Champion, ChampionStats, PerLvlStats } from "../../interface";
+import { ChampionHud, ChampionLoadingImg, ChampionSpell, ItemTooltip, StatsTab } from "../../components/molecules";
 import { Inventory, InventoryChampion } from "../../components/organism";
+import { GlobalContext } from "../../globalContext";
 export interface IconProps {
   champSelected: Champion;
-  itemHover?: {
-    position: {
-      x: number;
-      y: number;
-    };
-    item: Item;
-  };
+  champStats: ChampionStats;
+  champPerLvl: PerLvlStats;
+  lvl: number;
 }
 
-const DataView = ({ champSelected, itemHover }: IconProps): ReactElement => {
-  const stats = champSelected.stats;
+const DataView = ({ champSelected, champStats, champPerLvl }: IconProps): ReactElement => {
+  const { itemHover } = useContext(GlobalContext);
+
   return (
     <section className="w-full h-full flex gap-6 p-6">
       {itemHover && <ItemTooltip item={itemHover.item} position={itemHover.position} />}
       <div className="w-[20%]">
         <Inventory />
       </div>
-      <div className="flex gap-4 h-full w-[80%]">
-        <div className="w-[20%]">
-          <ChampionLoadingImg champSelected={champSelected} />
-          <InventoryChampion />
-        </div>
-        <div className="w-[80%]">
-          <ChampionHud champSelected={champSelected} />
-          <div className="flex mt-4 gap-4">
-            <StatsTab
-              stats={{
-                attackdamage: stats.attackdamage,
-                spelldamage: 0,
-                armor: stats.armor,
-                spellblock: stats.spellblock,
-                attackspeed: stats.attackspeed,
-                cdr: 0,
-                crit: stats.crit,
-                movespeed: stats.movespeed,
-              }}
-            />
-            <StatsTab
-              stats={{
-                hpregen: stats.hpregen,
-                mpregen: stats.mpregen,
-                peneArmor: [0, 0],
-                peneAp: [0, 0],
-                attackSpe: 0,
-                vampirism: 0,
-                attackrange: stats.attackrange,
-                msSpe: 0,
-              }}
-            />
-          </div>
-        </div>
+      <div className="w-[10%]">
+        <ChampionLoadingImg champSelected={champSelected} />
+        <InventoryChampion />
+      </div>
+      <div className="w-[40%] flex flex-col gap-6">
+        <ChampionHud champSelected={champSelected} champStats={champStats} champPerLvl={champPerLvl} />
+        <ChampionSpell champSelected={champSelected} />
+      </div>
+      <div className="w-[30%] grid grid-cols-2 grid-rows-6 gap-6">
+        <StatsTab
+          stats={{
+            attackdamage: champStats.attackdamage,
+            spelldamage: 0,
+            armor: champStats.armor,
+            spellblock: champStats.spellblock,
+            attackspeed: champStats.attackspeed,
+            cdr: 0,
+            crit: champStats.crit,
+            movespeed: champStats.movespeed,
+          }}
+        />
+        <StatsTab
+          stats={{
+            hpregen: champStats.hpregen,
+            mpregen: champStats.mpregen,
+            peneArmor: [0, 0],
+            peneAp: [0, 0],
+            attackSpe: 0,
+            vampirism: 0,
+            attackrange: champStats.attackrange,
+            msSpe: 0,
+          }}
+        />
       </div>
     </section>
   );
