@@ -14,6 +14,7 @@
     "en_GB": "Anglais",
     "es_ES": "Espagnol"
   },
+  "level": "niveau",
   "region":{
     "euw": "Eupore de l'Ouest",
     "na": "Amérique"

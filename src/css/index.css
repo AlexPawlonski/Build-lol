@@ -9,6 +9,7 @@ body {
   @apply bg-blue-7;
   color: white;
   height: 100vh;
+  font-family: "BeaufortforLOL Bold" !important;
 }
 
 #root {

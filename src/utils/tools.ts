@@ -1,4 +1,4 @@
-import { Item } from "../interface";
+import { ChampionStats, Item, PerLvlStats, Stats } from "../interface";
 
 export function classNames(...classes: (false | null | undefined | string)[]): string {
   return classes.filter(Boolean).join(" ");
@@ -167,4 +167,32 @@ export function clearListeAndSortByPrise(items: Item[]) {
   });
   clear.sort((item1, item2) => item1.gold.total - item2.gold.total);
   return [...clear];
+}
+
+function multiplier(stat: number, multi: number, lvl: number) {
+  return Math.ceil(stat + multi * (lvl - 1) * (0.7025 + 0.0175 * (lvl - 1)));
+}
+
+function calculatorAttackSpeed(stat: number, multi: number, lvl: number) {
+  const bonusAttackSpeed = multi * (lvl - 1) * (0.7025 + 0.0175 * (lvl - 1));
+  //bonusAttackSpeed <---- add item / rune bonus here / ex : bonusAttackSpeed + 20% + 50%
+  const result = stat * (1 + bonusAttackSpeed / 100);
+  return Math.round(result * 100) / 100;
+}
+
+export function changeStatsPerLvl(champStats: Stats, champPerLvl: PerLvlStats, lvl: number) {
+  const newStats: ChampionStats = {
+    armor: multiplier(champStats.armor, champPerLvl.armorperlevel, lvl),
+    attackdamage: multiplier(champStats.attackdamage, champPerLvl.attackdamageperlevel, lvl),
+    attackrange: champStats.attackrange,
+    attackspeed: calculatorAttackSpeed(champStats.attackspeed, champPerLvl.attackspeedperlevel, lvl),
+    crit: multiplier(champStats.crit, champPerLvl.critperlevel, lvl),
+    hp: multiplier(champStats.hp, champPerLvl.hpperlevel, lvl),
+    hpregen: multiplier(champStats.hpregen, champPerLvl.hpregenperlevel, lvl),
+    movespeed: champStats.movespeed,
+    mp: multiplier(champStats.mp, champPerLvl.mpperlevel, lvl),
+    mpregen: multiplier(champStats.mpregen, champPerLvl.mpregenperlevel, lvl),
+    spellblock: multiplier(champStats.spellblock, champPerLvl.spellblockperlevel, lvl),
+  };
+  return newStats;
 }

@@ -31,7 +31,7 @@ const InventoryChampion = ({}: Props): ReactElement => {
   });
 
   return (
-    <section className={classNames(isOver ? "text-or-2" : "text-or-3", "m-4 ")}>
+    <section className={classNames(isOver ? "text-or-2" : "text-or-3", "mt-4")}>
       <h2>{t("help.addItem")}</h2>
       <div className="my-4 grid border-[1px] border-grey-2" style={{ gridTemplateColumns: "repeat(3, 1fr)" }}>
         {Object.entries(champInventory).map((item, key) => (

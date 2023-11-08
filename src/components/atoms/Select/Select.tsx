@@ -36,17 +36,16 @@ const ChampionButton = ({ onChange, type, options, defaultValue }: Props): React
         onClick={() => setIsActive((oldState) => !oldState)}
       >
         <p>{type ? t(`${type}.${defaultValue}`) : defaultValue}</p>
-        <CaretUpSolid className={classNames("fill-or-3 h-4 mt-1 transform transition-all", !isActive && "rotate-[180deg]")} />
+        <CaretUpSolid
+          className={classNames("fill-or-3 h-4 mt-1 transform transition-all", !isActive && "rotate-[180deg]")}
+        />
       </div>
       {isActive && (
         <ul className="bg-blue-6 max-h-[20vh] overflow-scroll border-2 border-or-3 ">
           {options.map((option, key) => (
             <li
               key={`option-${key}`}
-              onClick={() => {
-                console.log(option.value);
-                onChange(option.value);
-              }}
+              onClick={() => onChange(option.value)}
               className="hover:bg-or-3 border-[1px] border-or-3 border-opacity-5 hover:bg-opacity-10 cursor-pointer px-4 py-2"
             >
               {t(option.label)}

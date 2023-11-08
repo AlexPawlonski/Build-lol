@@ -249,6 +249,32 @@ export interface Inventory {
   [key: string]: Item | undefined;
 }
 
+export interface ChampionStats {
+  armor: number;
+  attackdamage: number;
+  attackrange: number;
+  attackspeed: number;
+  crit: number;
+  hp: number;
+  hpregen: number;
+  movespeed: number;
+  mp: number;
+  mpregen: number;
+  spellblock: number;
+}
+
+export interface PerLvlStats {
+  hpperlevel: number;
+  mpperlevel: number;
+  armorperlevel: number;
+  spellblockperlevel: number;
+  hpregenperlevel: number;
+  mpregenperlevel: number;
+  critperlevel: number;
+  attackdamageperlevel: number;
+  attackspeedperlevel: number;
+}
+
 export enum Role {
   Top = "Top",
   Jungle = "Jungle",
