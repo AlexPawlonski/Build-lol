@@ -55,7 +55,6 @@ const Header = ({}: Props): ReactElement => {
             type="lang"
             onChange={(value) => {
               setLanguage(value);
-              console.log(value);
               i18n.changeLanguage(value);
             }}
             defaultValue={language}

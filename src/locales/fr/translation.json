@@ -17,7 +17,13 @@
   "level": "Niveau",
   "passive": "Passif",
   "spell": "Sort d'invocateur",
-  "region":{
+  "spellType": {
+    "manaCost": "Cout en mana",
+    "range": "Range",
+    "cooldow": "Temps de récupération"
+  },
+  "chart": "Graphique",
+  "region": {
     "euw": "Eupore de l'Ouest",
     "na": "Amérique"
   }

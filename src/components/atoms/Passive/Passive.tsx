@@ -21,8 +21,8 @@ const PassiveComponent = ({ passive }: Props): ReactElement => {
           className="border-2 border-or-2"
         />
         <div className="text-or-3">
-          <h3 className="text-2xl">{passive.name}</h3>
-          <h4 className="">{t("passive")}</h4>
+          <h3 className="text-lg">{passive.name}</h3>
+          <h4>{t("passive")}</h4>
         </div>
       </div>
       <div>
