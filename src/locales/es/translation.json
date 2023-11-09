@@ -15,6 +15,8 @@
     "es_ES": "Español"
   },
   "level": "nivel",
+  "passive": "Pasiva",
+  "spell": "Hechizo de invocador",
   "region":{
     "euw": "Europa Occidental", 
     "na": "América" 

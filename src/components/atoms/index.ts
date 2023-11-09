@@ -1,6 +1,7 @@
 import Bar from "./Bar";
 import Button from "./Button";
 import ChampionButton from "./ChampionButton";
+import ChartLine from "./ChartLine";
 import ImputSearch from "./ImputSearch";
 import ItemButton from "./ItemButton";
 import ItemInventory from "./ItemInventory";
@@ -26,4 +27,5 @@ export {
   ItemInventory,
   ImputSearch,
   ItemButton,
+  ChartLine,
 };
