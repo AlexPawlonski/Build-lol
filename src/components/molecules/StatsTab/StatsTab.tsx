@@ -7,13 +7,16 @@ export interface Props {
 
 const StatsTab = ({ stats }: Props): ReactElement => {
   return (
-    <div className="border-2 border-or-3 grid grid-cols-2 gap-y-2 gap-x-4 p-2">
+    <div className="grid grid-cols-3 gap-4 p-2 items-center w-full">
       {Object.entries(stats).map((item, key) => {
-        return <StatItem key={key} label={item[0]} value={item[1]} />;
+        return (
+          <div className="flex justify-center w-full m-2">
+            <StatItem key={key} label={item[0]} value={item[1]} />
+          </div>
+        );
       })}
     </div>
   );
 };
 
 export default StatsTab;
-

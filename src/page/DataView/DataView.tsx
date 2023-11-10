@@ -4,6 +4,8 @@ import { ChampionHud, ChampionLoadingImg, ChampionSpell, ItemTooltip, StatsTab }
 import { Inventory, InventoryChampion } from "../../components/organism";
 import { GlobalContext } from "../../globalContext";
 import { Passive } from "../../components/atoms";
+import ChartBar from "../../components/atoms/ChartBar";
+import { useTranslation } from "react-i18next";
 export interface IconProps {
   champSelected: Champion;
   champStats: ChampionStats;
@@ -12,6 +14,7 @@ export interface IconProps {
 }
 
 const DataView = ({ champSelected, champStats, champPerLvl }: IconProps): ReactElement => {
+  const { t } = useTranslation();
   const { itemHover } = useContext(GlobalContext);
 
   return (
@@ -29,21 +32,53 @@ const DataView = ({ champSelected, champStats, champPerLvl }: IconProps): ReactE
         <ChampionHud champSelected={champSelected} champStats={champStats} champPerLvl={champPerLvl} />
         <ChampionSpell champSelected={champSelected} />
       </div>
-      <div className="w-[30%] grid grid-cols-2 grid-rows-6 gap-6">
+      <div className="w-[30%] flex flex-col items-center gap-4">
+        <h3 className="text-2xl text-or-3">
+          {t("statsTitle.ad")} / {t("statsTitle.ap")}
+        </h3>
+        <ChartBar
+          data={[
+            {
+              data: champStats.attackdamage,
+              title: "AD",
+              icon: "attackdamage",
+              color: "#ec8c34",
+            },
+            {
+              data: 0,
+              title: "AP",
+              icon: "spelldamage",
+              color: "#786cff",
+            },
+          ]}
+          title={t("spellType.cooldow")}
+        />
+        <h3 className="text-2xl text-or-3">
+          {t("statsTitle.armor")} / {t("statsTitle.mrRes")}
+        </h3>
+        <ChartBar
+          data={[
+            {
+              data: champStats.armor,
+              title: "Armor",
+              icon: "armor",
+              color: "#f2ba57",
+            },
+            {
+              data: champStats.spellblock,
+              title: "SpellBlock",
+              icon: "spellblock",
+              color: "#52dfff",
+            },
+          ]}
+          title={t("spellType.cooldow")}
+        />
         <StatsTab
           stats={{
-            attackdamage: champStats.attackdamage,
-            spelldamage: 0,
-            armor: champStats.armor,
-            spellblock: champStats.spellblock,
             attackspeed: champStats.attackspeed,
             cdr: 0,
             crit: champStats.crit,
             movespeed: champStats.movespeed,
-          }}
-        />
-        <StatsTab
-          stats={{
             hpregen: champStats.hpregen,
             mpregen: champStats.mpregen,
             peneArmor: [0, 0],
@@ -54,6 +89,7 @@ const DataView = ({ champSelected, champStats, champPerLvl }: IconProps): ReactE
             msSpe: 0,
           }}
         />
+        <h3 className="text-2xl text-or-3">{t("summary")}</h3>
       </div>
     </section>
   );

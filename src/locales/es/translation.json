@@ -17,8 +17,29 @@
   "level": "nivel",
   "passive": "Pasiva",
   "spell": "Hechizo de invocador",
-  "region":{
-    "euw": "Europa Occidental", 
-    "na": "América" 
+  "spellType": {
+    "manaCost": "Coste de maná",
+    "range": "Rango",
+    "cooldow": "Cooldow"
+  },
+  "chart": "Gráfico",
+  "statsTitle": {
+    "ad": "Daño de ataque",
+    "ap": "Poder de habilidad",
+    "armor": "Armadura",
+    "armorPen": "Penetración de armadura",
+    "mrRes": "Resistencia mágica",
+    "mrPen": "Penetración mágica",
+    "as": "Velocidad de ataque",
+    "lifeSteal": "Robo de vida",
+    "spellVamp": "Vampirismo de hechizos",
+    "vamp": "Vampirismo",
+    "manaR": "Regeneración de maná",
+    "lifeR": "Regeneración de vida"
+  },
+  "summary": "Resumen de construcción",
+  "region": {
+    "euw": "Europa Occidental",
+    "na": "América"
   }
 }

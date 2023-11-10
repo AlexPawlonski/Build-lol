@@ -23,6 +23,21 @@
     "cooldow": "Temps de récupération"
   },
   "chart": "Graphique",
+  "statsTitle": {
+    "ad": "Dégâts d'attaque",
+    "ap": "Puissance",
+    "armor": "Armure",
+    "armorPen": "Pénétration d'armure",
+    "mrRes": "Résistance magique",
+    "mrPen": "Pénétration magique",
+    "as": "Vitesse d'attaque",
+    "lifeSteal": "Vol de vie",
+    "spellVamp": "Sort Vampirisme",
+    "vamp": "Vampirisme",
+    "manaR": "Régénération de mana",
+    "lifeR": "Régénération de vie"
+  },
+  "summary": "Résumé du build",
   "region": {
     "euw": "Eupore de l'Ouest",
     "na": "Amérique"
