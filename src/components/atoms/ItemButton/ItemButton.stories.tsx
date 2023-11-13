@@ -13,5 +13,4 @@ const Template: ComponentStory<typeof ItemButton> = (args) => {
 };
 
 export const Default: ComponentStory<typeof ItemButton> = Template.bind({});
-Default.args = { img: iconChamp, size: "w-52 h-52", onClick: (id) => console.log(id) };
-
+Default.args = { img: iconChamp, size: "w-52 h-52" };
