@@ -56,3 +56,7 @@ main {
 li {
   list-style: none;
 }
+
+.image {
+  background-image: url("../assets/iconStat/ac.png");
+}

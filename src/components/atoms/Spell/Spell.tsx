@@ -74,8 +74,8 @@ const SpellComponent = ({ spell, keyId }: Props): ReactElement => {
         {router === "help" && <p>{spell.tooltip}</p>}
         {router === "chart" && (
           <div className="flex items-center justify-start">
-            <ChartLine dataState={spell.cooldown} title={"Cooldow"} unity="S" />
-            <ChartLine dataState={spell.cost} title={"Coste"} unity="Mana" />
+            <ChartLine dataState={spell.cooldown} title={t("spellType.cooldow")} unity="S" />
+            <ChartLine dataState={spell.cost} title={t("spellType.manaCost")} unity="Mana" />
           </div>
         )}
       </div>
