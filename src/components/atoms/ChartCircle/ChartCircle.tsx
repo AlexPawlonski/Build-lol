@@ -1,65 +1,47 @@
 import { ReactElement } from "react";
-import { Bar } from "react-chartjs-2";
-import { Chart as ChartJS, CategoryScale, LinearScale, ChartOptions, ChartData, BarElement } from "chart.js";
-import { StatItem } from "..";
-
+import { Doughnut } from "react-chartjs-2";
+import { Chart as ChartJS, ChartOptions, ChartData, ArcElement, Tooltip } from "chart.js";
+import ChartDataLabels from "chartjs-plugin-datalabels";
 export interface Props {
   data: {
     data: number;
-    title: string;
-    icon: string;
+    label: string;
     color: string;
   }[];
-  title: string;
 }
 
-const ChartCircle = ({ data, title }: Props): ReactElement => {
-  ChartJS.register(CategoryScale, LinearScale, BarElement);
-  const options: ChartOptions<"bar"> = {
-    indexAxis: "y",
-    maintainAspectRatio: false,
-    responsive: true,
+const ChartCircle = ({ data }: Props): ReactElement => {
+  ChartJS.register(ArcElement, ChartDataLabels, Tooltip);
+  const options: ChartOptions<"doughnut"> = {
     plugins: {
-      legend: {
-        display: false,
-      },
-    },
-    scales: {
-      x: {
-        stacked: true,
-        display: false,
-        beginAtZero: true,
-      },
-      y: {
-        stacked: true,
-        display: false,
-        beginAtZero: true,
+      datalabels: {
+        color: "#fff",
+        font: {
+          weight: "bold",
+          size: 20,
+        },
+        formatter: (value) => {
+          return value !== 0 ? value : "";
+        },
       },
     },
   };
 
-  const dataArray = data.map((item) => {
-    return {
-      label: [item.title],
-      data: [item.data],
-      backgroundColor: item.color,
-    };
-  });
-
-  // const dataChart: ChartData<"bar"> = {
-  //   labels: [title],
-  //   datasets: dataArray,
-  // };
+  const dataChart: ChartData<"doughnut"> = {
+    labels: data.map((item) => item.label),
+    datasets: [
+      {
+        data: data.map((item) => item.data),
+        borderWidth: 0,
+        backgroundColor: data.map((item) => item.color),
+      },
+    ],
+  };
 
   return (
-    <div className="w-full">
-      <div className="w-full h-10 flex justify-between items-center">
-        {data.map((item, key) => (
-          <StatItem key={key} label={item.icon} value={item.data} />
-        ))}
-      </div>
-      <div className="w-full h-14">
-        {/* <Bar options={options} data={dataChart} updateMode="resize" /> */}
+    <div className="w-full p-4 flex justify-center">
+      <div className="w-[70%]">
+        <Doughnut data={dataChart} options={options} updateMode="resize" />
       </div>
     </div>
   );

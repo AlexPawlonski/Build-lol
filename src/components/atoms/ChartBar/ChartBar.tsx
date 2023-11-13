@@ -23,6 +23,9 @@ const ChartBar = ({ data, title }: Props): ReactElement => {
       legend: {
         display: false,
       },
+      datalabels: {
+        display: false,
+      },
     },
     scales: {
       x: {

@@ -22,6 +22,9 @@ const ChartLine = ({ dataState, title, unity }: Props): ReactElement => {
         display: true,
         text: title,
       },
+      datalabels: {
+        display: false,
+      },
     },
     scales: {
       y: {

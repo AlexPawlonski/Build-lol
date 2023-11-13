@@ -25,13 +25,7 @@ const ItemsCategorie = ({ categoryItem }: Props): ReactElement => {
         <div className="flex flex-wrap w-full">
           {isActive &&
             categoryItem[1]?.map((item, key) => (
-              <ItemButton
-                key={key}
-                img={getItemImg(item.image.full, version)}
-                item={item}
-                size="w-10"
-                onClick={(id) => console.log(id)}
-              />
+              <ItemButton key={key} img={getItemImg(item.image.full, version)} item={item} size="w-10" />
             ))}
         </div>
       </div>
@@ -42,4 +36,3 @@ const ItemsCategorie = ({ categoryItem }: Props): ReactElement => {
 };
 
 export default ItemsCategorie;
-

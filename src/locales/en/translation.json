@@ -28,7 +28,7 @@
     "ap": "Ability power",
     "armor": "Armor",
     "armorPen": "Armor penetration",
-    "mrRes": "Magic resistance",
+    "mr": "Magic resistance",
     "mrPen": "Magic penetration",
     "as": "Attack speed",
     "lifeSteal": "Life steal",

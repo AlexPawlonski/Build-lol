@@ -72,6 +72,5 @@ export function useChampion() {
 export function useRegion() {
   return useMutation({
     mutationFn: (region: string) => getRegion(region),
-    onSuccess: (value) => console.log(value),
   });
 }

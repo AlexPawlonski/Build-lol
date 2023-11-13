@@ -3,7 +3,7 @@ import { Champion, ChampionStats, PerLvlStats } from "../../interface";
 import { ChampionHud, ChampionLoadingImg, ChampionSpell, ItemTooltip, StatsTab } from "../../components/molecules";
 import { Inventory, InventoryChampion } from "../../components/organism";
 import { GlobalContext } from "../../globalContext";
-import { Passive } from "../../components/atoms";
+import { ChartCircle, Passive } from "../../components/atoms";
 import ChartBar from "../../components/atoms/ChartBar";
 import { useTranslation } from "react-i18next";
 export interface IconProps {
@@ -90,6 +90,30 @@ const DataView = ({ champSelected, champStats, champPerLvl }: IconProps): ReactE
           }}
         />
         <h3 className="text-2xl text-or-3">{t("summary")}</h3>
+        <ChartCircle
+          data={[
+            {
+              data: champStats.armor,
+              label: t("statsTitle.armor"),
+              color: "#f2ba57",
+            },
+            {
+              data: champStats.spellblock,
+              label:  t("statsTitle.mr"),
+              color: "#52dfff",
+            },
+            {
+              data: champStats.attackdamage,
+              label: t("statsTitle.ad"),
+              color: "#ec8c34",
+            },
+            {
+              data: 0,
+              label: t("statsTitle.ap"),
+              color: "#786cff",
+            },
+          ]}
+        />
       </div>
     </section>
   );

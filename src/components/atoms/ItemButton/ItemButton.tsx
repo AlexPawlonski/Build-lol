@@ -7,10 +7,9 @@ export interface Props {
   img: string;
   item: Item;
   size?: string;
-  onClick: (id: string) => void;
 }
 
-const ItemButton = ({ img, item, size, onClick }: Props): ReactElement => {
+const ItemButton = ({ img, item, size }: Props): ReactElement => {
   const { setItemHover } = useContext(GlobalContext);
 
   const [{ isDragging }, drag] = useDrag<{ item: Item }, void, { isDragging: boolean }>({
@@ -26,7 +25,6 @@ const ItemButton = ({ img, item, size, onClick }: Props): ReactElement => {
       ref={drag}
       style={{ opacity: isDragging ? 0.5 : 1 }}
       className={classNames(size, "border-2 border-grey-2 hover:border-or-2 m-1")}
-      onClick={() => onClick(item.name)}
       onMouseEnter={(e) => {
         setItemHover({
           position: { x: e.currentTarget.offsetLeft, y: e.currentTarget.offsetTop + e.currentTarget.offsetHeight + 10 },

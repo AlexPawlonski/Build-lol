@@ -28,7 +28,7 @@
     "ap": "Puissance",
     "armor": "Armure",
     "armorPen": "Pénétration d'armure",
-    "mrRes": "Résistance magique",
+    "mr": "Résistance magique",
     "mrPen": "Pénétration magique",
     "as": "Vitesse d'attaque",
     "lifeSteal": "Vol de vie",
