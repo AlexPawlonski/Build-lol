@@ -17,6 +17,27 @@
   "level": "level",
   "passive": "Passive",
   "spell": "Summoner spell",
+  "spellType": {
+    "manaCost": "Mana cost",
+    "range": "Range",
+    "cooldow": "Cooldow"
+  },
+  "chart": "Chart",
+  "statsTitle": {
+    "ad": "Attack damage",
+    "ap": "Ability power",
+    "armor": "Armor",
+    "armorPen": "Armor penetration",
+    "mr": "Magic resistance",
+    "mrPen": "Magic penetration",
+    "as": "Attack speed",
+    "lifeSteal": "Life steal",
+    "spellVamp": "Spell vamp",
+    "vamp": "vampirism",
+    "manaR": "Mana regeneration",
+    "lifeR": "Life regeneration"
+  },
+  "summary": "Build summary",
   "region": {
     "euw": "Western Europe",
     "na": "America"

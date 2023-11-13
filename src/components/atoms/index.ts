@@ -1,6 +1,7 @@
 import Bar from "./Bar";
 import Button from "./Button";
 import ChampionButton from "./ChampionButton";
+import ChartCircle from "./ChartCircle";
 import ChartLine from "./ChartLine";
 import ImputSearch from "./ImputSearch";
 import ItemButton from "./ItemButton";
@@ -28,4 +29,5 @@ export {
   ImputSearch,
   ItemButton,
   ChartLine,
+  ChartCircle,
 };
