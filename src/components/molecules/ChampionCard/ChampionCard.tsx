@@ -13,13 +13,13 @@ const ChampionCard = ({ champion, onClick }: Props): ReactElement => {
   const { version } = useContext(GlobalContext);
 
   return (
-    <div className="flex flex-col items-center mx-4">
+    <div className="flex flex-col items-center w-[30%] sm:w-[23%] lg:w-[15%] xl:w-[6%]">
       <ChampionButton
         img={getChampionImg(champion.image.full, version)}
         id={champion.id}
         onClick={(id) => onClick(id)}
       />
-      <h2 className="mt-2 mb-4 text-grey-1">{champion.name}</h2>
+      <h2 className="mt-2 text-grey-1">{champion.name}</h2>
     </div>
   );
 };

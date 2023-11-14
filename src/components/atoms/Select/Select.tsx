@@ -30,23 +30,24 @@ const ChampionButton = ({ onChange, type, options, defaultValue }: Props): React
   }, []);
 
   return (
-    <div ref={ref} className="min-w-max font-BeaufortforLOL uppercase">
-      <div
-        className="px-4 bg-blue-6 text-or-3 text-center py-1 cursor-pointer min-w-max flex justify-center items-center gap-2 "
-        onClick={() => setIsActive((oldState) => !oldState)}
-      >
+    <div
+      ref={ref}
+      className="font-BeaufortforLOL uppercase relative bg-blue-6 text-center py-1 cursor-pointer min-w-max"
+      onClick={() => setIsActive((oldState) => !oldState)}
+    >
+      <div className="flex items-center justify-center gap-2 px-6 py-2 text-or-3">
         <p>{type ? t(`${type}.${defaultValue}`) : defaultValue}</p>
         <CaretUpSolid
           className={classNames("fill-or-3 h-4 mt-1 transform transition-all", !isActive && "rotate-[180deg]")}
         />
       </div>
       {isActive && (
-        <ul className="bg-blue-6 max-h-[20vh] overflow-scroll border-2 border-or-3 ">
+        <ul className="lg:absolute z-50 top-12 bg-blue-6 max-h-[20vh] overflow-scroll lg:border-2 border-or-3 w-full">
           {options.map((option, key) => (
             <li
               key={`option-${key}`}
               onClick={() => onChange(option.value)}
-              className="hover:bg-or-3 border-[1px] border-or-3 border-opacity-5 hover:bg-opacity-10 cursor-pointer px-4 py-2"
+              className="border-[1px] border-or-3 border-opacity-5 cursor-pointer px-4 py-2"
             >
               {t(option.label)}
             </li>

@@ -19,7 +19,7 @@ const NavItem = ({ title, icon, onClick, canClick }: Props): ReactElement => {
       onClick={() => canClick && onClick()}
     >
       <div className={classNames(!canClick ? "first:fill-or-1" : "group-hover:first:fill-or-1 first:fill-or-3")}>{icon}</div>
-      <p>{title}</p>
+      <p className="lg:block hidden">{title}</p>
     </div>
   );
 };

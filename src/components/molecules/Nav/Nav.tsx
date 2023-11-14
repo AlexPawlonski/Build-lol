@@ -10,12 +10,12 @@ const Nav = ({}: Props): ReactElement => {
   const { router, setRouter, champSelected } = useContext(GlobalContext);
   const { t } = useTranslation();
   return (
-    <nav className="h-full flex">
+    <nav className="h-full flex gap-2 lg:gap-4 xl:gap-6">
       {champSelected && (
         <>
           <NavItem
             title={t("selectChampion")}
-            icon={<ChampionIcon className="w-7 p-1" />}
+            icon={<ChampionIcon className="w-7 h-full p-1" />}
             onClick={() => setRouter("champSelect")}
             canClick={router === "data"}
           />

@@ -17,35 +17,22 @@ const FilterArea = ({ roleSelect, setRoleSelected, nameSearch }: Props): ReactEl
   const isAdc = useMemo(() => roleSelect === Role.Adc, [roleSelect]);
 
   return (
-    <section className="w-full border-or-2 border-b-2 flex items-center justify-between py-2 h-16">
-      <div className="flex gap-4">
-        <RoleButton
-          img={Top}
-          size="w-10"
-          isActive={isTop}
-          onClick={() => setRoleSelected(!isTop ? Role.Top : undefined)}
-        />
+    <section className="w-full p-2 pb-0 flex items-center h-16">
+      <div className="flex lg:w-auto w-[75%] gap-2 mr-6">
+        <RoleButton img={Top} isActive={isTop} onClick={() => setRoleSelected(!isTop ? Role.Top : undefined)} />
         <RoleButton
           img={Jungle}
-          size="w-10"
           isActive={isJungle}
           onClick={() => setRoleSelected(!isJungle ? Role.Jungle : undefined)}
         />
         <RoleButton
           img={Middle}
-          size="w-10"
           isActive={isMiddle}
           onClick={() => setRoleSelected(!isMiddle ? Role.Middle : undefined)}
         />
-        <RoleButton
-          img={AdcIcon}
-          size="w-10"
-          isActive={isAdc}
-          onClick={() => setRoleSelected(!isAdc ? Role.Adc : undefined)}
-        />
+        <RoleButton img={AdcIcon} isActive={isAdc} onClick={() => setRoleSelected(!isAdc ? Role.Adc : undefined)} />
         <RoleButton
           img={Support}
-          size="w-10"
           isActive={isSupport}
           onClick={() => setRoleSelected(!isSupport ? Role.Support : undefined)}
         />
@@ -56,4 +43,3 @@ const FilterArea = ({ roleSelect, setRoleSelected, nameSearch }: Props): ReactEl
 };
 
 export default FilterArea;
-
