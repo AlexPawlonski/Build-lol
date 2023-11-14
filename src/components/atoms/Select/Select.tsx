@@ -42,7 +42,7 @@ const ChampionButton = ({ onChange, type, options, defaultValue }: Props): React
         />
       </div>
       {isActive && (
-        <ul className="lg:absolute top-12 bg-blue-6 max-h-[20vh] overflow-scroll lg:border-2 border-or-3 w-full">
+        <ul className="lg:absolute z-50 top-12 bg-blue-6 max-h-[20vh] overflow-scroll lg:border-2 border-or-3 w-full">
           {options.map((option, key) => (
             <li
               key={`option-${key}`}

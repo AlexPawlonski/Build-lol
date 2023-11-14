@@ -21,6 +21,15 @@ body {
     height: auto;
   }
 }
+.navFilterHeight {
+  height: calc(100vh - 128px);
+}
+
+@media screen and (min-width: 1024px) {
+  .navFilterHeight {
+    height: calc(100vh - 153px);
+  }
+}
 
 #root {
   height: 100%;
