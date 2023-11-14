@@ -6,6 +6,8 @@ import ChampionHud from "./ChampionHud";
 import ItemsCategorie from "./ItemsCategorie";
 import ItemTooltip from "./ItemTooltip";
 import ChampionSpell from "./ChampionSpell";
+import Setting from "./Setting";
+import Nav from "./Nav";
 
 export {
   ChampionCard,
@@ -16,4 +18,6 @@ export {
   ItemsCategorie,
   ItemTooltip,
   ChampionSpell,
+  Setting,
+  Nav,
 };

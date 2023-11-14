@@ -22,6 +22,8 @@ interface GlobalContextType {
   setItemHover: (item?: { position: { x: number; y: number }; item: Item }) => void;
   champInventory: Inventory;
   setChampInventory: (inventory: Inventory) => void;
+  settingOpen: boolean;
+  setSettingOpen: (value: boolean) => void;
 }
 
 export const GlobalContext = createContext({} as GlobalContextType);
@@ -46,6 +48,7 @@ export const GlobalContextProvider = ({ children }: { children: ReactElement }) 
   const [level, setLevel] = useState(1);
   const [itemHover, setItemHover] = useState<{ position: { x: number; y: number }; item: Item }>();
   const [champInventory, setChampInventory] = useState<Inventory>(defaultInventory);
+  const [settingOpen, setSettingOpen] = useState(false);
 
   return (
     <GlobalContext.Provider
@@ -70,6 +73,8 @@ export const GlobalContextProvider = ({ children }: { children: ReactElement }) 
         setItemHover,
         champInventory,
         setChampInventory,
+        settingOpen,
+        setSettingOpen,
       }}
     >
       {children}
