@@ -13,8 +13,8 @@ const PassiveComponent = ({ passive }: Props): ReactElement => {
 
   const { t } = useTranslation();
   return (
-    <div className="lg:p-4 p-2 mx-3 border-2 border-or-3 bg-blue-7">
-      <div className="flex items-center gap-4 mb-2 lg:mb-4">
+    <div className="lg:p-4 p-2 mx-3 lg:mx-0 border-2 border-or-3 bg-blue-7">
+      <div className="flex items-center sm:flex-wrap gap-4 mb-2 lg:mb-4">
         <img
           src={getChampionPassiveImg(passive.image.full, version)}
           alt={`Passive-${passive.name}-img`}

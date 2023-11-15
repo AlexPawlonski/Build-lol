@@ -47,7 +47,7 @@ const DataView = ({ champSelected, champStats, champPerLvl }: IconProps): ReactE
   }, [screenWidthSize]);
 
   return (
-    <section className="flex flex-col gap-3 pb-6 ">
+    <section className="flex flex-col lg:flex-row gap-3 lg:gap-6 pb-6 lg:p-6">
       {itemHover && pcPoint[1024] && (
         <ItemTooltip item={itemHover.item} position={itemHover.position} pcPoint={pcPoint} />
       )}
@@ -56,13 +56,15 @@ const DataView = ({ champSelected, champStats, champPerLvl }: IconProps): ReactE
           <Inventory />
         </div>
       )}
-      <div className="hidden lg:flex flex-col lg:gap-4">
+      <div className="hidden lg:flex lg:w-[10%] flex-col lg:gap-4">
         <ChampionLoadingImg champSelected={champSelected} />
         <InventoryChampion />
+        <Passive passive={champSelected.passive} />
       </div>
-      <div className="lg:w-[40%] w-full flex lg:flex-col gap-2 lg:gap-6 p-2 sticky top-[55px] lg:relative bg-blue-7 z-50 border-b-2 border-or-3 lg:border-b-0">
+      <div className="lg:w-[40%] w-full flex lg:flex-col gap-2 lg:gap-6 p-2 lg:p-0 sticky top-[55px] lg:static bg-blue-7 z-50 border-b-2 border-or-3 lg:border-b-0">
         <img src={img} alt={`${img}-image`} className="h-24 lg:hidden" />
         <ChampionHud champSelected={champSelected} champStats={champStats} champPerLvl={champPerLvl} />
+        {pcPoint[1024] && <ChampionSpell champSelected={champSelected} />}
       </div>
       {!pcPoint[1024] && (
         <Button text={t("shop")} icon={<ShopIcon />} isActive={shopOpen} onClick={() => setShopOpen((old) => !old)} />
@@ -78,10 +80,16 @@ const DataView = ({ champSelected, champStats, champPerLvl }: IconProps): ReactE
           </div>
         </div>
       )}
-      <ChampionStatsComponent champStats={champStats} pcPoint={pcPoint} />
-      <div className="w-[80%] h-1 mx-10 my-4 bg-or-3"></div>
-      <Passive passive={champSelected.passive} />
-      <ChampionSpell champSelected={champSelected} />
+      <div className="lg:w-[30%]">
+        <ChampionStatsComponent champStats={champStats} pcPoint={pcPoint} />
+      </div>
+      {!pcPoint[1024] && (
+        <>
+          <div className="w-[80%] h-1 mx-10 my-4 bg-or-3"></div>
+          <Passive passive={champSelected.passive} />
+          <ChampionSpell champSelected={champSelected} />
+        </>
+      )}
     </section>
   );
 };

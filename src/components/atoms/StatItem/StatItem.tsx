@@ -65,7 +65,7 @@ const StatItem = ({ label, value }: Props): ReactElement => {
   }
 
   return (
-    <div className="flex items-center">
+    <div className="flex justify-center items-center">
       <img src={icon(label)} alt={`${label}-img`} className="w-5 lg:w-10 lg:mr-2 mr-1" />
       <p className="font-bold text-or-1 lg:text-2xl">{Array.isArray(value) ? `${value[0]} | ${value[1]}%` : value}</p>
     </div>

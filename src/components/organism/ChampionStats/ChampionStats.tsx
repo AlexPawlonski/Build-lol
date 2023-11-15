@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import ChartBar from "../../atoms/ChartBar";
 import { ChartCircle } from "../../atoms";
 import { StatsTab } from "../../molecules";
-import { classNames } from "../../../utils";
+
 export interface Props {
   champStats: ChampionStats;
   pcPoint: { 1024: boolean; 1280: boolean };
@@ -13,7 +13,7 @@ export interface Props {
 const ChampionStatsComponent = ({ champStats, pcPoint }: Props): ReactElement => {
   const { t } = useTranslation();
   return (
-    <section className="lg:w-[30%] w-full px-4 lg:px-0 flex flex-col items-center gap-2 lg:gap-4">
+    <section className="w-full px-4 lg:px-0 flex flex-col items-center gap-2 lg:gap-4">
       <h3 className="text-2xl text-or-3">
         {t("statsTitle.ad")} / {t("statsTitle.ap")}
       </h3>
@@ -54,9 +54,9 @@ const ChampionStatsComponent = ({ champStats, pcPoint }: Props): ReactElement =>
         ]}
         title={t("spellType.cooldow")}
       />
-      <h3 className="text-2xl text-or-3">{t("summary")}</h3>
-      <div className="max-w-full flex items-center gap-4">
-        <div className={classNames(pcPoint[1024] && "w-[60%]")}>
+      {!pcPoint[1024] && <h3 className="text-2xl text-or-3">{t("summary")}</h3>}
+      <div className="lg:w-full flex lg:flex-col items-center justify-center gap-4">
+        <div className="w-[60%] lg:w-full">
           <StatsTab
             stats={{
               attackspeed: champStats.attackspeed,
@@ -74,7 +74,8 @@ const ChampionStatsComponent = ({ champStats, pcPoint }: Props): ReactElement =>
             }}
           />
         </div>
-        <div className="w-[40%]">
+        {pcPoint[1024] && <h3 className="text-2xl text-or-3">{t("summary")}</h3>}
+        <div className="w-[40%] lg:w-[70%]">
           <ChartCircle
             data={[
               {

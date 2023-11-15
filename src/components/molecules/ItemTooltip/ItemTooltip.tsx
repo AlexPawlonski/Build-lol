@@ -58,7 +58,7 @@ const ItemTooltip = ({ item, pcPoint }: Props): ReactElement => {
   return (
     <div
       className={classNames(
-        pcPoint[1024] && "absolute top-10 left-[15%] w-[400px] z-50",
+        pcPoint[1024] && "absolute top-10 left-[20%] w-[400px] z-50",
         "bg-blue-6 border-2 border-or-4 p-2",
       )}
     >
@@ -69,7 +69,7 @@ const ItemTooltip = ({ item, pcPoint }: Props): ReactElement => {
           <p className="text-or-3">{item.gold.total} Gold</p>
         </div>
       </div>
-      <div className="h-40 overflow-scroll">{ReactHtmlParser(formatHtml(item.description))}</div>
+      <div className="h-40 lg:h-auto overflow-scroll lg:overflow-auto">{ReactHtmlParser(formatHtml(item.description))}</div>
     </div>
   );
 };
