@@ -10,7 +10,7 @@ const Bar = ({ state, type }: Props): ReactElement => {
   return (
     <div
       className={classNames(
-        "w-full h-10 flex items-center justify-center rounded-md",
+        "w-full h-5 lg:h-10 flex items-center justify-center rounded-md",
         type === "hp" && "bg-stats-hp",
         type === "mp" && "bg-stats-mp",
         type === "energie" && " bg-stats-energie",

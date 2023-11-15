@@ -23,7 +23,7 @@ const ItemButton = ({ img, item, size }: Props): ReactElement => {
   return (
     <button
       ref={drag}
-      style={{ opacity: isDragging ? 0.5 : 1 }}
+      style={{ opacity: isDragging ? 0.5 : 1, touchAction: "none" }}
       className={classNames(size, "border-2 border-grey-2 hover:border-or-2 m-1")}
       onMouseEnter={(e) => {
         setItemHover({
@@ -33,6 +33,12 @@ const ItemButton = ({ img, item, size }: Props): ReactElement => {
       }}
       onMouseLeave={() => setItemHover(undefined)}
       draggable={true}
+      onClick={(e) =>
+        setItemHover({
+          position: { x: e.currentTarget.offsetLeft, y: e.currentTarget.offsetTop + e.currentTarget.offsetHeight + 10 },
+          item: item,
+        })
+      }
     >
       <img src={img} alt={`${img}-image`} className="w-full h-full" />
     </button>

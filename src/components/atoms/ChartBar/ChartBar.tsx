@@ -56,12 +56,12 @@ const ChartBar = ({ data, title }: Props): ReactElement => {
 
   return (
     <div className="w-full">
-      <div className="w-full h-10 flex justify-between items-center">
+      <div className="flex justify-between items-center">
         {data.map((item, key) => (
           <StatItem key={key} label={item.icon} value={item.data} />
         ))}
       </div>
-      <div className="w-full h-14">
+      <div className="h-14">
         <Bar options={options} data={dataChart} updateMode="resize" />
       </div>
     </div>

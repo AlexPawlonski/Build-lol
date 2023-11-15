@@ -10,7 +10,7 @@ export interface Props {
   onChange: (value: string) => void;
 }
 
-const ChampionButton = ({ onChange, type, options, defaultValue }: Props): ReactElement => {
+const Select = ({ onChange, type, options, defaultValue }: Props): ReactElement => {
   const { t } = useTranslation();
   const [isActive, setIsActive] = useState(false);
 
@@ -58,4 +58,4 @@ const ChampionButton = ({ onChange, type, options, defaultValue }: Props): React
   );
 };
 
-export default ChampionButton;
+export default Select;

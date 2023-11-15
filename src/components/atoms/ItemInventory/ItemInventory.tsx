@@ -17,7 +17,6 @@ const ItemInventory = ({ item, idInventory }: Props): ReactElement => {
     drop: (item) => {
       const newIventory = champInventory;
       const keys = Object.keys(newIventory);
-
       if (idInventory >= 0 && idInventory < keys.length) {
         const keyToUpdate = keys[idInventory];
         newIventory[keyToUpdate] = item.item;

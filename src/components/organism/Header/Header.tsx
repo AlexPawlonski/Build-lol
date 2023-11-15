@@ -11,16 +11,19 @@ const Header = ({}: Props): ReactElement => {
   return (
     <header
       className={classNames(
-        settingOpen ? "h-screen absolute top-0 right-0" : "h-14 border-b-or-3 border-b-2",
-        "w-full flex justify-between z-50",
+        !settingOpen && "border-or-3 border-b-2",
+        "w-full flex justify-between z-50 bg-blue-7 sticky top-0",
       )}
     >
       <div
-        className={classNames(settingOpen && "h-14 border-b-or-3 border-b-2 ", "flex items-center justify-between gap-4 px-4 w-full")}
+        className={classNames(
+          settingOpen && "h-14 border-b-or-3 border-b-2",
+          "flex items-center justify-between gap-4 px-4 w-full",
+        )}
       >
         <div className="flex items-center h-[53px] gap-2 lg:gap-4 xl:gap-6">
           <img className="h-[45px]" src={logo} alt={`${logo}-alt`} />
-          <h1 className="font-BeaufortforLOL text-sm lg:text-xl xl:text-2xl uppercase text-or-3">
+          <h1 className="font-BeaufortforLOL text-base lg:text-sm  xl:text-2xl uppercase text-or-3">
             <a href="https://www.linkedin.com/in/alex-pawlonski/" target="_blank">
               Build-lol.com
             </a>

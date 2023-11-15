@@ -2,24 +2,25 @@ import { ReactElement } from "react";
 import { classNames } from "../../../utils";
 
 export interface Props {
-  size?: string;
-  title: string;
+  icon?: ReactElement;
+  text: string;
+  isActive?: boolean;
   onClick: () => void;
 }
 
-const Button = ({ size, title, onClick }: Props): ReactElement => {
+const Button = ({ icon, text, onClick, isActive }: Props): ReactElement => {
   return (
     <button
       className={classNames(
-        size,
-        "py-2 px-4 bg-blue-7 border-2 border-or-3 hover:border-or-2 hover:text-or-2 text-or-3 transition-colors font-BeaufortforLOL uppercase",
+        isActive ? "bg-gradient-to-t from-blue-3 to-blue-7 border-blue-2" : "bg-grey-4 border-blue-3",
+        " border-4 flex justify-center items-center gap-2 rounded mx-3 py-2",
       )}
       onClick={() => onClick()}
     >
-      <p>{title}</p>
+      <div className="first:w-7 first:fill-stats-ms">{icon}</div>
+      <h3 className="uppercase text-2xl font-bold text-stats-ms">{text}</h3>
     </button>
   );
 };
 
 export default Button;
-

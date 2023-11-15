@@ -44,7 +44,7 @@ const ChampSelect = ({}: IconProps): ReactElement => {
   }, [champions, isLoading, nameSearch, roleSelected]);
 
   return (
-    <section className="lg:p-6 w-full">
+    <section className=" lg:px-2 w-full">
       <FilterArea
         roleSelect={roleSelected}
         setRoleSelected={(role) => setRoleSelected(role)}

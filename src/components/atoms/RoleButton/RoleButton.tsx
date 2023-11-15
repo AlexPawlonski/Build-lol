@@ -3,7 +3,6 @@ import { classNames } from "../../../utils";
 
 export interface Props {
   img: string;
-
   isActive: boolean;
   onClick: () => void;
 }
