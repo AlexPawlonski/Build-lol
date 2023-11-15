@@ -60,13 +60,13 @@ const Setting = ({}: Props): ReactElement => {
   return (
     <>
       <div className="w-[26px] h-[26px] relative lg:hidden " onClick={() => setSettingOpen(!settingOpen)}>
-        <div className="handleIgnore w-full h-full  absolute z-50 top-0 right-0 cursor-pointer"></div>
+        <div className="handleIgnore w-full h-full absolute z-50 top-0 right-0 cursor-pointer"></div>
         <SettingIcon className={classNames(settingOpen ? "fill-or-2" : "fill-or-3 ")} />
       </div>
 
       <div
         className={classNames(
-          settingOpen ? "absolute lg:static top-14 right-0 flex w-full lg:w-auto navHeight" : "hidden lg:flex",
+          settingOpen ? "absolute top-14 right-0 flex w-full lg:w-auto navHeight" : "hidden lg:flex",
         )}
       >
         <div className="bg-blue-6 opacity-50 w-full lg:hidden"></div>

@@ -39,10 +39,8 @@ const ChartCircle = ({ data }: Props): ReactElement => {
   };
 
   return (
-    <div className="w-full p-4 flex justify-center">
-      <div className="w-[70%]">
-        <Doughnut data={dataChart} options={options} updateMode="resize" />
-      </div>
+    <div className="w-full lg:w-full lg:p-4 flex justify-center">
+      <Doughnut data={dataChart} options={options} updateMode="resize" />
     </div>
   );
 };

@@ -8,9 +8,10 @@ import { classNames } from "../../../utils";
 export interface Props {
   item: Item;
   position: { x: number; y: number };
+  pcPoint: { 1024: boolean; 1280: boolean };
 }
 
-const ItemTooltip = ({ item }: Props): ReactElement => {
+const ItemTooltip = ({ item, pcPoint }: Props): ReactElement => {
   const { version } = useContext(GlobalContext);
   function formatHtml(text: string) {
     const verif = [
@@ -47,7 +48,7 @@ const ItemTooltip = ({ item }: Props): ReactElement => {
     ];
 
     let updatedString = text;
-    
+
     verif.forEach(([search, replace]) => {
       updatedString = updatedString.replace(new RegExp(search, "g"), replace);
     });
@@ -55,16 +56,22 @@ const ItemTooltip = ({ item }: Props): ReactElement => {
   }
 
   return (
-    <div className={classNames("absolute bg-blue-6 border-2 border-or-4 z-50 w-[400px] p-3 top-10 left-[15%]")}>
-      <div className="flex items-center justify-between mb-2">
-        <img src={getItemImg(item.image.full, version)} alt={`${item.image.full}-image`} className="h-10" />
-        <h2>{item.name}</h2>
-        <p className="text-or-3">{item.gold.total} Gold</p>
+    <div
+      className={classNames(
+        pcPoint[1024] && "absolute top-10 left-[15%] w-[400px] z-50",
+        "bg-blue-6 border-2 border-or-4 p-2",
+      )}
+    >
+      <div className="flex items-center gap-4 mb-2">
+        <img src={getItemImg(item.image.full, version)} alt={`${item.image.full}-image`} className="h-8 lg:h-10" />
+        <div className="">
+          <h2>{item.name}</h2>
+          <p className="text-or-3">{item.gold.total} Gold</p>
+        </div>
       </div>
-      {ReactHtmlParser(formatHtml(item.description))}
+      <div className="h-40 overflow-scroll">{ReactHtmlParser(formatHtml(item.description))}</div>
     </div>
   );
 };
 
 export default ItemTooltip;
-

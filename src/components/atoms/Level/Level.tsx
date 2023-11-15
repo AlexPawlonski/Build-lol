@@ -16,7 +16,7 @@ const Level = ({ champSelectStats, champPerLvl }: Props): ReactElement => {
   return (
     <div className="flex items-center gap-2">
       <CaretUpSolid
-        className="transform rotate-[-90deg] fill-or-3 w-6"
+        className="transform rotate-[-90deg] fill-or-3 w-4 lg:w-6"
         onClick={() => {
           if (level !== 1) {
             setLevel(level - 1);
@@ -24,11 +24,11 @@ const Level = ({ champSelectStats, champPerLvl }: Props): ReactElement => {
           }
         }}
       />
-      <p className="beaufortforLOL text-2xl text-or-2 uppercase">
+      <p className="beaufortforLOL text-lg lg:text-2xl text-or-2 uppercase">
         {t("level")} {level}
       </p>
       <CaretUpSolid
-        className="transform rotate-[90deg] fill-or-3 w-6"
+        className="transform rotate-[90deg] fill-or-3 w-4 lg:w-6"
         onClick={() => {
           if (level !== 18) {
             setLevel(level + 1);
