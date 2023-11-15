@@ -52,7 +52,7 @@ const ChartLine = ({ dataState, title, unity }: Props): ReactElement => {
     ],
   };
   return (
-    <div className="w-1/2">
+    <div className="w-full lg:w-1/2">
       <Line options={options} data={data} updateMode="resize" />
     </div>
   );

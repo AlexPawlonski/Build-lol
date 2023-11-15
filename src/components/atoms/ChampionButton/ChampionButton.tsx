@@ -5,14 +5,13 @@ import border from "../../../assets/borderChamp.webp";
 export interface Props {
   img: string;
   id: string;
-  size?: string;
   onClick: (id: string) => void;
 }
 
-const ChampionButton = ({ img, id, size, onClick }: Props): ReactElement => {
+const ChampionButton = ({ img, id, onClick }: Props): ReactElement => {
   return (
     <button
-      className={classNames(size, "group border-2 border-grey-2 hover:border-or-2 relative")}
+      className={classNames("group border-2 border-grey-2 hover:border-or-2 relative w-full")}
       style={{ position: "relative" }}
       onClick={() => onClick(id)}
     >
@@ -28,4 +27,3 @@ const ChampionButton = ({ img, id, size, onClick }: Props): ReactElement => {
 };
 
 export default ChampionButton;
-

@@ -1,4 +1,4 @@
-import { ReactElement, useContext } from "react";
+import { ReactElement, useContext, useEffect } from "react";
 import { GlobalContext } from "../../../globalContext";
 import { Trash } from "../../../assets/iconSvg";
 import { ItemInventory } from "../../atoms";
@@ -29,6 +29,10 @@ const InventoryChampion = ({}: Props): ReactElement => {
       isOver: !!monitor.isOver(),
     }),
   });
+
+  useEffect(() => {
+    console.log(champInventory);
+  }, [champInventory]);
 
   return (
     <section className={classNames(isOver ? "text-or-2" : "text-or-3")}>

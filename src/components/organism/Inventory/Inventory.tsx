@@ -30,7 +30,7 @@ const Header = ({}: Props): ReactElement => {
   return (
     <section>
       <ImputSearch onChange={(search) => setItemSearch(search)} />
-      <div className="flex flex-wrap overflow-scroll no-scrollbar" style={{ height: "calc(100vh - 150px)" }}>
+      <div className="flex flex-wrap overflow-scroll no-scrollbar inventoryHeight">
         {ItemBytag && ItemBytag.map((item, key) => <ItemsCategorie key={key} categoryItem={item} />)}
       </div>
     </section>
@@ -38,4 +38,3 @@ const Header = ({}: Props): ReactElement => {
 };
 
 export default Header;
-

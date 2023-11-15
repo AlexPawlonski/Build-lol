@@ -44,13 +44,13 @@ const ChampSelect = ({}: IconProps): ReactElement => {
   }, [champions, isLoading, nameSearch, roleSelected]);
 
   return (
-    <section className="w-full h-full p-6">
+    <section className=" lg:px-2 w-full">
       <FilterArea
         roleSelect={roleSelected}
         setRoleSelected={(role) => setRoleSelected(role)}
         nameSearch={(name) => setNameSearch(name)}
       />
-      <div className="flex flex-wrap overflow-scroll max-h-full pt-1 mt-4" style={{ height: "calc(100% - 150px)" }}>
+      <div className="flex flex-wrap content-start gap-3 m-2 mb-0 pt-1 pl-1 overflow-scroll navFilterHeight">
         {!isLoading &&
           championsArray?.map((item, key) => (
             <ChampionCard

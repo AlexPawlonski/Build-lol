@@ -16,7 +16,6 @@ const Template: ComponentStory<typeof Button> = (args) => {
 };
 
 export const Default: ComponentStory<typeof Button> = Template.bind({});
-Default.args = { title: "CHAMPION", onClick: () => console.log("click!") };
+Default.args = { text: "CHAMPION", onClick: () => console.log("click!") };
 export const SizeLarge: ComponentStory<typeof Button> = Template.bind({});
-SizeLarge.args = { title: "CHAMPION", size: "w-52 h-21", onClick: () => console.log("click!") };
-
+SizeLarge.args = { text: "CHAMPION", onClick: () => console.log("click!") };
