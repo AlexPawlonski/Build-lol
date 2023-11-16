@@ -1,20 +1,21 @@
-import { ReactElement, useContext } from "react";
+import { ReactElement, useContext, useEffect, useState } from "react";
 import { classNames } from "../../../utils";
 import { getItemImg } from "../../../api";
 import { useDrag, useDrop } from "react-dnd";
 import { Item } from "../../../interface";
 import { GlobalContext } from "../../../globalContext";
 export interface Props {
-  item: Item | undefined;
+  itemInInventory: Item | undefined;
   idInventory: number;
 }
 
-const ItemInventory = ({ item, idInventory }: Props): ReactElement => {
+const ItemInventory = ({ itemInInventory, idInventory }: Props): ReactElement => {
   const { setChampInventory, champInventory, version } = useContext(GlobalContext);
-
-  const [{}, drop] = useDrop<{ item: Item }, void, { canDrop: boolean; isOver: boolean }>({
+  const [item, setItem] = useState<Item | undefined>();
+  const [{}, drop] = useDrop<{ item: Item }, void, { canDrop: boolean }>({
     accept: "ITEM_TO_INVENTORY",
     drop: (item) => {
+      setItem(item.item);
       const newIventory = champInventory;
       const keys = Object.keys(newIventory);
       if (idInventory >= 0 && idInventory < keys.length) {
@@ -25,9 +26,12 @@ const ItemInventory = ({ item, idInventory }: Props): ReactElement => {
     },
     collect: (monitor) => ({
       canDrop: !!monitor.canDrop(),
-      isOver: !!monitor.isOver(),
     }),
   });
+
+  useEffect(() => {
+    !Boolean(itemInInventory) ? setItem(undefined) : setItem(itemInInventory);
+  }, [itemInInventory]);
 
   const [{ isDragging }, drag] = useDrag<{ itemId: number }, void, { isDragging: boolean }>({
     type: "ITEM_CAN_DELETE",

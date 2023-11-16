@@ -9,7 +9,7 @@ import { classNames } from "./utils";
 
 function App() {
   const { router, champSelected, champStats, champPerLvl, level, settingOpen } = useContext(GlobalContext);
-  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+  const isMobile = /Android/i.test(navigator.userAgent);
 
   return (
     <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
