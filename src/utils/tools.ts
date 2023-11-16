@@ -160,13 +160,29 @@ export function itemBytag(itemsArray: Item[]) {
   };
 }
 
+function exitTag(tags: string[], exTags: string[]): Boolean {
+  if (tags.length === 0) {
+    return false;
+  }
+  let isFalse = true;
+  exTags.forEach((tag) => {
+    if (tags.includes(tag)) {
+      isFalse = false;
+    }
+  });
+  return isFalse;
+}
+
 export function clearListeAndSortByPrise(items: Item[]) {
   const clear: Item[] = [];
   items.forEach((item) => {
     item.gold.purchasable && item.gold.total > 0 && Object.entries(item.maps)[0][1] && clear.push(item);
   });
-  clear.sort((item1, item2) => item1.gold.total - item2.gold.total);
-  return [...clear];
+
+  const clearConsomable = clear.filter((item) => exitTag(item.tags, ["Consumable", "Jungle"]));
+
+  clearConsomable.sort((item1, item2) => item1.gold.total - item2.gold.total);
+  return [...clearConsomable];
 }
 
 function multiplier(stat: number, multi: number, lvl: number) {

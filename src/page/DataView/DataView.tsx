@@ -1,6 +1,6 @@
 import { ReactElement, useContext, useEffect, useMemo, useState } from "react";
 import { Champion, ChampionStats, PerLvlStats } from "../../interface";
-import { ChampionLoadingImg, ItemTooltip } from "../../components/molecules";
+import { ChampionLoadingImg, ItemDetail } from "../../components/molecules";
 import {
   ChampionSpell,
   ChampionHud,
@@ -22,7 +22,7 @@ export interface IconProps {
 }
 
 const DataView = ({ champSelected, champStats, champPerLvl }: IconProps): ReactElement => {
-  const { itemHover, version } = useContext(GlobalContext);
+  const { itemFocus, version } = useContext(GlobalContext);
   const { t } = useTranslation();
 
   const [screenWidthSize, setScreenSize] = useState(window.innerWidth);
@@ -48,12 +48,9 @@ const DataView = ({ champSelected, champStats, champPerLvl }: IconProps): ReactE
 
   return (
     <section className="flex flex-col lg:flex-row gap-3 lg:gap-6 pb-6 lg:p-6">
-      {itemHover && pcPoint[1024] && (
-        <ItemTooltip item={itemHover.item} position={itemHover.position} pcPoint={pcPoint} />
-      )}
       {pcPoint[1024] && (
         <div className="w-[20%]">
-          <Inventory />
+          <Inventory pcPoint={pcPoint} />
         </div>
       )}
       <div className="hidden lg:flex lg:w-[10%] flex-col lg:gap-4">
@@ -72,11 +69,11 @@ const DataView = ({ champSelected, champStats, champPerLvl }: IconProps): ReactE
       {shopOpen && !pcPoint[1024] && (
         <div className="flex w-screen gap-3 px-3">
           <div className="w-[40%]">
-            <Inventory />
+            <Inventory pcPoint={pcPoint} />
           </div>
           <div className="w-[60%] flex flex-col items-center gap-3">
             <InventoryChampion />
-            {itemHover && <ItemTooltip item={itemHover.item} position={itemHover.position} pcPoint={pcPoint} />}
+            {itemFocus && <ItemDetail item={itemFocus} pcPoint={pcPoint} />}
           </div>
         </div>
       )}
