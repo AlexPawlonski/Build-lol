@@ -1,4 +1,4 @@
-import { ReactElement, useContext, useEffect } from "react";
+import { ReactElement, useContext } from "react";
 import { GlobalContext } from "../../../globalContext";
 import { Trash } from "../../../assets/iconSvg";
 import { ItemInventory } from "../../atoms";
@@ -30,16 +30,12 @@ const InventoryChampion = ({}: Props): ReactElement => {
     }),
   });
 
-  useEffect(() => {
-    console.log(champInventory);
-  }, [champInventory]);
-
   return (
     <section className={classNames(isOver ? "text-or-2" : "text-or-3")}>
       <h2>{t("help.addItem")}</h2>
       <div className="my-4 grid border-[1px] border-grey-2" style={{ gridTemplateColumns: "repeat(3, 1fr)" }}>
         {Object.entries(champInventory).map((item, key) => (
-          <ItemInventory key={key} item={item[1]} idInventory={key} />
+          <ItemInventory key={key} itemInInventory={item[1]} idInventory={key} />
         ))}
       </div>
       <div
