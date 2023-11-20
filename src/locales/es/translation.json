@@ -6,7 +6,8 @@
   "search": "Buscar",
   "help": {
     "addItem": "¡Arrastra un objeto del inventario para agregarlo a tu campeón!",
-    "deleteItem": "Arrastra para eliminar el objeto"
+    "deleteItem": "Arrastra para eliminar el objeto",
+    "hoverItem": "¡Pase el ratón por un elemento o haga clic en él para ver los detalles !"
   },
   "gold": "Oro",
   "lang": {
@@ -42,5 +43,13 @@
     "euw": "Europa Occidental",
     "na": "América"
   },
-  "shop": "Tienda"
+  "shop": "Tienda",
+  "categories": { 
+    "boots": "Botas", 
+    "startItem": "Artículo de inicio",
+    "suppItem": "Soporte de artículos",
+    "StartItem": "Artículo inicial", 
+    "mibbleItem": "Artículo intermedio", 
+    "completeItem": "Artículo completo" 
+  }
 }

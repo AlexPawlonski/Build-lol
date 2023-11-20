@@ -18,8 +18,10 @@ interface GlobalContextType {
   setChampPerLvl: (champPerLvl: PerLvlStats) => void;
   level: number;
   setLevel: (level: number) => void;
-  itemHover?: { position: { x: number; y: number }; item: Item };
-  setItemHover: (item?: { position: { x: number; y: number }; item: Item }) => void;
+  itemFocus?: Item | undefined;
+  setItemFocus: (item: Item | undefined) => void;
+  itemIsActive: Item | undefined;
+  setItemIsActive: (item: Item | undefined) => void;
   champInventory: Inventory;
   setChampInventory: (inventory: Inventory) => void;
   settingOpen: boolean;
@@ -46,7 +48,8 @@ export const GlobalContextProvider = ({ children }: { children: ReactElement }) 
   const [champStats, setChampStats] = useState<ChampionStats>();
   const [champPerLvl, setChampPerLvl] = useState<PerLvlStats>();
   const [level, setLevel] = useState(1);
-  const [itemHover, setItemHover] = useState<{ position: { x: number; y: number }; item: Item }>();
+  const [itemFocus, setItemFocus] = useState<Item>();
+  const [itemIsActive, setItemIsActive] = useState<Item>();
   const [champInventory, setChampInventory] = useState<Inventory>(defaultInventory);
   const [settingOpen, setSettingOpen] = useState(false);
 
@@ -69,8 +72,10 @@ export const GlobalContextProvider = ({ children }: { children: ReactElement }) 
         setChampPerLvl,
         level,
         setLevel,
-        itemHover,
-        setItemHover,
+        itemFocus,
+        setItemFocus,
+        itemIsActive,
+        setItemIsActive,
         champInventory,
         setChampInventory,
         settingOpen,

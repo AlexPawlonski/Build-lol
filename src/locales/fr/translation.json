@@ -6,7 +6,8 @@
   "search": "Chercher",
   "help": {
     "addItem": "Faite glisser un item de l'inventaire pour l'ajouter à votre champion !",
-    "deleteItem": "Glisser pour supprimer l'objet"
+    "deleteItem": "Glisser pour supprimer l'objet",
+    "hoverItem": "Survoler un item ou cliquer dessus, pour afficher c'est details !"
   },
   "gold": "Or",
   "lang": {
@@ -42,5 +43,13 @@
     "euw": "Eupore de l'Ouest",
     "na": "Amérique"
   },
-  "shop": "Boutique"
+  "shop": "Boutique",
+  "categories": {
+    "boots": "Boots",
+    "startItem": "Item de départ",
+    "suppItem": "Item support",
+    "bassItem": "Item de base",
+    "mibbleItem": "Item intermédiaire",
+    "completeItem": "Item compléter"
+  }
 }

@@ -12,6 +12,7 @@ export interface Props {
 const ItemInventory = ({ itemInInventory, idInventory }: Props): ReactElement => {
   const { setChampInventory, champInventory, version } = useContext(GlobalContext);
   const [item, setItem] = useState<Item | undefined>();
+
   const [{}, drop] = useDrop<{ item: Item }, void, { canDrop: boolean }>({
     accept: "ITEM_TO_INVENTORY",
     drop: (item) => {

@@ -3,16 +3,15 @@ import { Item } from "../../../interface";
 import { getItemImg } from "../../../api";
 import ReactHtmlParser from "react-html-parser";
 import { GlobalContext } from "../../../globalContext";
-import { classNames } from "../../../utils";
 
 export interface Props {
   item: Item;
-  position: { x: number; y: number };
   pcPoint: { 1024: boolean; 1280: boolean };
 }
 
-const ItemTooltip = ({ item, pcPoint }: Props): ReactElement => {
-  const { version } = useContext(GlobalContext);
+const ItemDetail = ({ item, pcPoint }: Props): ReactElement => {
+  const { version, setItemFocus, setItemIsActive, itemIsActive } = useContext(GlobalContext);
+
   function formatHtml(text: string) {
     const verif = [
       ["<mainText", '<div class="maintext"'],
@@ -56,22 +55,30 @@ const ItemTooltip = ({ item, pcPoint }: Props): ReactElement => {
   }
 
   return (
-    <div
-      className={classNames(
-        pcPoint[1024] && "absolute top-10 left-[20%] w-[400px] z-50",
-        "bg-blue-6 border-2 border-or-4 p-2",
+    <div className="border-2 border-or-4 p-2 relative">
+      {pcPoint[1024] && itemIsActive && (
+        <p
+          className="absolute top-2 right-3 text-2xl text-or-3 hover:scale-110 hover:text-or-2 transition-all uppercase font-bold cursor-pointer transform rotate-45"
+          onClick={() => {
+            setItemFocus(undefined);
+            setItemIsActive(undefined);
+          }}
+        >
+          +
+        </p>
       )}
-    >
       <div className="flex items-center gap-4 mb-2">
         <img src={getItemImg(item.image.full, version)} alt={`${item.image.full}-image`} className="h-8 lg:h-10" />
-        <div className="">
+        <div>
           <h2>{item.name}</h2>
           <p className="text-or-3">{item.gold.total} Gold</p>
         </div>
       </div>
-      <div className="h-40 lg:h-auto overflow-scroll lg:overflow-auto">{ReactHtmlParser(formatHtml(item.description))}</div>
+      <div className="max-h-40 lg:max-h-64 overflow-scroll lg:overflow-auto">
+        {ReactHtmlParser(formatHtml(item.description))}
+      </div>
     </div>
   );
 };
 
-export default ItemTooltip;
+export default ItemDetail;

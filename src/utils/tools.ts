@@ -59,114 +59,93 @@ export function filterVersion(versionArray: string[]) {
   return [versionArray[0], ...arrayFilter];
 }
 
-export function itemBytag(itemsArray: Item[]) {
-  const Boots: Item[] = [];
-  const ManaRegen: Item[] = [];
-  const HealthRegen: Item[] = [];
-  const Health: Item[] = [];
-  const Mana: Item[] = [];
-  const Damage: Item[] = [];
-  const CriticalStrike: Item[] = [];
-  const SpellDamage: Item[] = [];
-  const SpellBlock: Item[] = [];
-  const Armor: Item[] = [];
-  const LifeSteal: Item[] = [];
-  const AttackSpeed: Item[] = [];
-  const Jungle: Item[] = [];
-  const OnHit: Item[] = [];
-  const Consumable: Item[] = [];
-  const Active: Item[] = [];
-  const MagicPenetration: Item[] = [];
-  const any: Item[] = [];
-  if (itemsArray) {
-    itemsArray.forEach((item) => {
-      switch (item.tags[0]) {
-        case "Boots":
-          Boots.push(item);
-          break;
-        case "ManaRegen":
-          ManaRegen.push(item);
-          break;
-        case "HealthRegen":
-          HealthRegen.push(item);
-          break;
-        case "Health":
-          Health.push(item);
-          break;
-        case "Mana":
-          Mana.push(item);
-          break;
-        case "Damage":
-          Damage.push(item);
-          break;
-        case "CriticalStrike":
-          CriticalStrike.push(item);
-          break;
-        case "SpellDamage":
-          SpellDamage.push(item);
-          break;
-        case "SpellBlock":
-          SpellBlock.push(item);
-          break;
-        case "Armor":
-          Armor.push(item);
-          break;
-        case "LifeSteal":
-          LifeSteal.push(item);
-          break;
-        case "AttackSpeed":
-          AttackSpeed.push(item);
-          break;
-        case "Jungle":
-          Jungle.push(item);
-          break;
-        case "OnHit":
-          OnHit.push(item);
-          break;
-        case "Consumable":
-          Consumable.push(item);
-          break;
-        case "Active":
-          Active.push(item);
-          break;
-        case "MagicPenetration":
-          MagicPenetration.push(item);
-          break;
-        default:
-          any.push(item);
-          break;
-      }
-    });
+function exitTag(tags: string[], exTags: string[]): Boolean {
+  if (tags.length === 0) {
+    return false;
   }
-  return {
-    boots: clearListeAndSortByPrise(Boots),
-    nanaRegen: clearListeAndSortByPrise(ManaRegen),
-    healthRegen: clearListeAndSortByPrise(HealthRegen),
-    health: clearListeAndSortByPrise(Health),
-    mana: clearListeAndSortByPrise(Mana),
-    damage: clearListeAndSortByPrise(Damage),
-    criticalStrike: clearListeAndSortByPrise(CriticalStrike),
-    spellDamage: clearListeAndSortByPrise(SpellDamage),
-    SpellBlock: clearListeAndSortByPrise(SpellBlock),
-    armor: clearListeAndSortByPrise(Armor),
-    lifeSteal: clearListeAndSortByPrise(LifeSteal),
-    attackSpeed: clearListeAndSortByPrise(AttackSpeed),
-    jungle: clearListeAndSortByPrise(Jungle),
-    onHit: clearListeAndSortByPrise(OnHit),
-    consumable: clearListeAndSortByPrise(Consumable),
-    active: clearListeAndSortByPrise(Active),
-    magicPenetration: clearListeAndSortByPrise(MagicPenetration),
-    any: clearListeAndSortByPrise(any),
-  };
+  let isFalse = true;
+  exTags.forEach((tag) => {
+    if (tags.includes(tag)) {
+      isFalse = false;
+    }
+  });
+  return isFalse;
 }
 
-export function clearListeAndSortByPrise(items: Item[]) {
+function findTag(tags: string[], search: string) {
+  if (tags.length === 0) {
+    return false;
+  }
+  return tags.includes(search);
+}
+
+export function clearItemList(items: Item[]) {
   const clear: Item[] = [];
   items.forEach((item) => {
     item.gold.purchasable && item.gold.total > 0 && Object.entries(item.maps)[0][1] && clear.push(item);
   });
-  clear.sort((item1, item2) => item1.gold.total - item2.gold.total);
-  return [...clear];
+  const clearConsomable = clear.filter((item) => exitTag(item.tags, ["Consumable", "Jungle"]));
+  return clearConsomable;
+}
+
+export function sortByItemLvl(items: Item[]) {
+  const bootsArray = items.filter((item) => findTag(item.tags, "Boots"));
+  const LaneItemArray = items.filter((item) => findTag(item.tags, "Lane"));
+  const supItemArray = items.filter((item) => findTag(item.tags, "GoldPer"));
+
+  const lowItem = items.filter((item) => {
+    if (!Boolean(item?.from)) {
+      if (findTag(item.tags, "Boots") || findTag(item.tags, "Lane") || findTag(item.tags, "GoldPer")) {
+        return false;
+      } else {
+        return true;
+      }
+    } else {
+      return false;
+    }
+  });
+
+  const middleItem = items.filter((item) => {
+    if (item.from && item.into) {
+      if (parseInt(item.into[0]) >= 7000) {
+        return false;
+      } else {
+        return true;
+      }
+    } else {
+      return false;
+    }
+  });
+
+  const highItem = items.filter((item) => {
+    if (item.into) {
+      if (parseInt(item.into[0]) >= 7000) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return true;
+    }
+  });
+
+  const filterHighItem = highItem
+    .filter((item) => !findTag(item.tags, "Boots"))
+    .filter((item) => !findTag(item.tags, "Lane"))
+    .filter((item) => !findTag(item.tags, "GoldPer"));
+
+  return {
+    boots: soreByPrice(bootsArray),
+    startItem: soreByPrice(LaneItemArray.filter((item) => !findTag(item.tags, "GoldPer"))),
+    suppItem: soreByPrice(supItemArray),
+    bassItem: soreByPrice(lowItem),
+    mibbleItem: soreByPrice(middleItem),
+    completeItem: soreByPrice(filterHighItem),
+  };
+}
+
+export function soreByPrice(items: Item[]) {
+  return items.sort((item1, item2) => item1.gold.total - item2.gold.total);
 }
 
 function multiplier(stat: number, multi: number, lvl: number) {
@@ -196,3 +175,104 @@ export function changeStatsPerLvl(champStats: Stats, champPerLvl: PerLvlStats, l
   };
   return newStats;
 }
+
+// export function itemBytag(itemsArray: Item[]) {
+//   const Boots: Item[] = [];
+//   const ManaRegen: Item[] = [];
+//   const HealthRegen: Item[] = [];
+//   const Health: Item[] = [];
+//   const Mana: Item[] = [];
+//   const Damage: Item[] = [];
+//   const CriticalStrike: Item[] = [];
+//   const SpellDamage: Item[] = [];
+//   const SpellBlock: Item[] = [];
+//   const Armor: Item[] = [];
+//   const LifeSteal: Item[] = [];
+//   const AttackSpeed: Item[] = [];
+//   const Jungle: Item[] = [];
+//   const OnHit: Item[] = [];
+//   const Consumable: Item[] = [];
+//   const Active: Item[] = [];
+//   const MagicPenetration: Item[] = [];
+//   const any: Item[] = [];
+//   if (itemsArray) {
+//     itemsArray.forEach((item) => {
+//       switch (item.tags[0]) {
+//         case "Boots":
+//           Boots.push(item);
+//           break;
+//         case "ManaRegen":
+//           ManaRegen.push(item);
+//           break;
+//         case "HealthRegen":
+//           HealthRegen.push(item);
+//           break;
+//         case "Health":
+//           Health.push(item);
+//           break;
+//         case "Mana":
+//           Mana.push(item);
+//           break;
+//         case "Damage":
+//           Damage.push(item);
+//           break;
+//         case "CriticalStrike":
+//           CriticalStrike.push(item);
+//           break;
+//         case "SpellDamage":
+//           SpellDamage.push(item);
+//           break;
+//         case "SpellBlock":
+//           SpellBlock.push(item);
+//           break;
+//         case "Armor":
+//           Armor.push(item);
+//           break;
+//         case "LifeSteal":
+//           LifeSteal.push(item);
+//           break;
+//         case "AttackSpeed":
+//           AttackSpeed.push(item);
+//           break;
+//         case "Jungle":
+//           Jungle.push(item);
+//           break;
+//         case "OnHit":
+//           OnHit.push(item);
+//           break;
+//         case "Consumable":
+//           Consumable.push(item);
+//           break;
+//         case "Active":
+//           Active.push(item);
+//           break;
+//         case "MagicPenetration":
+//           MagicPenetration.push(item);
+//           break;
+//         default:
+//           any.push(item);
+//           break;
+//       }
+//     });
+//   }
+//   return {
+//     boots: clearListeAndSortByPrise(Boots),
+//     nanaRegen: clearListeAndSortByPrise(ManaRegen),
+//     healthRegen: clearListeAndSortByPrise(HealthRegen),
+//     health: clearListeAndSortByPrise(Health),
+//     mana: clearListeAndSortByPrise(Mana),
+//     damage: clearListeAndSortByPrise(Damage),
+//     criticalStrike: clearListeAndSortByPrise(CriticalStrike),
+//     spellDamage: clearListeAndSortByPrise(SpellDamage),
+//     SpellBlock: clearListeAndSortByPrise(SpellBlock),
+//     armor: clearListeAndSortByPrise(Armor),
+//     lifeSteal: clearListeAndSortByPrise(LifeSteal),
+//     attackSpeed: clearListeAndSortByPrise(AttackSpeed),
+//     jungle: clearListeAndSortByPrise(Jungle),
+//     onHit: clearListeAndSortByPrise(OnHit),
+//     consumable: clearListeAndSortByPrise(Consumable),
+//     active: clearListeAndSortByPrise(Active),
+//     magicPenetration: clearListeAndSortByPrise(MagicPenetration),
+//     any: clearListeAndSortByPrise(any),
+//   };
+// }
