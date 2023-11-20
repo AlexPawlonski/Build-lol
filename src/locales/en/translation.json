@@ -6,7 +6,8 @@
   "search": "Search",
   "help": {
     "addItem": "Drag an item from the inventory to add it to your champion!",
-    "deleteItem": "Drag to delete the item"
+    "deleteItem": "Drag to delete the item",
+    "hoverItem": "Hover an item or click on it to display details !"
   },
   "gold": "Gold",
   "lang": {
@@ -42,5 +43,13 @@
     "euw": "Western Europe",
     "na": "America"
   },
-  "shop": "Shop"
+  "shop": "Shop",
+  "categories": {
+    "boots": "Boots",
+    "startItem": "Start item",
+    "suppItem": "Item support",
+    "bassItem": "Bass item",
+    "mibbleItem": "Intermediate item",
+    "completeItem": "Complete item"
+  }
 }

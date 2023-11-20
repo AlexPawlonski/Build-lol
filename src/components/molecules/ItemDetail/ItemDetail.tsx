@@ -74,7 +74,7 @@ const ItemDetail = ({ item, pcPoint }: Props): ReactElement => {
           <p className="text-or-3">{item.gold.total} Gold</p>
         </div>
       </div>
-      <div className="max-h-40 lg:max-h-52 overflow-scroll lg:overflow-auto">
+      <div className="max-h-40 lg:max-h-64 overflow-scroll lg:overflow-auto">
         {ReactHtmlParser(formatHtml(item.description))}
       </div>
     </div>

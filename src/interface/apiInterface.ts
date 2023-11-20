@@ -174,7 +174,8 @@ export interface Item {
   description: string;
   colloq: string;
   plaintext: string;
-  into: string[];
+  into?: string[];
+  from?: string[];
   image: {
     full: string;
     sprite: string;
@@ -197,6 +198,7 @@ export interface Item {
   stats: {
     [key: string]: number;
   };
+  requiredAlly?: string;
 }
 
 export interface ItemData {
