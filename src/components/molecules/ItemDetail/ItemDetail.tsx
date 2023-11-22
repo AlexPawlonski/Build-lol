@@ -1,8 +1,8 @@
 import { ReactElement, useContext } from "react";
 import { Item } from "../../../interface";
-import { getItemImg } from "../../../api";
 import ReactHtmlParser from "react-html-parser";
-import { GlobalContext } from "../../../globalContext";
+import { useGlobalContext } from "@src/context/globalContext";
+import { ItemButton } from "@src/components/atoms";
 
 export interface Props {
   item: Item;
@@ -10,7 +10,8 @@ export interface Props {
 }
 
 const ItemDetail = ({ item, pcPoint }: Props): ReactElement => {
-  const { version, setItemFocus, setItemIsActive, itemIsActive } = useContext(GlobalContext);
+  const { version, setItemFocus, setItemIsActive, itemIsActive } =
+    useGlobalContext();
 
   function formatHtml(text: string) {
     const verif = [
@@ -68,7 +69,7 @@ const ItemDetail = ({ item, pcPoint }: Props): ReactElement => {
         </p>
       )}
       <div className="flex items-center gap-4 mb-2">
-        <img src={getItemImg(item.image.full, version)} alt={`${item.image.full}-image`} className="h-8 lg:h-10" />
+        <ItemButton item={item} size="h-8 lg:h-10" />
         <div>
           <h2>{item.name}</h2>
           <p className="text-or-3">{item.gold.total} Gold</p>

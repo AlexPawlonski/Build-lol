@@ -1,25 +1,34 @@
 import { ReactElement, useContext, useMemo } from "react";
 import { classNames } from "../../../utils";
-import { GlobalContext } from "../../../globalContext";
-import border from "../../../assets/borderChamp.webp";
+import border from "@public/borderChamp.webp";
 import { Item } from "../../../interface";
 import { useDrag } from "react-dnd";
+import { useGlobalContext } from "@src/context/globalContext";
+import { ImageComponent } from "..";
+import { useImgItem } from "@src/hook";
+import { BuilderIcon } from "@public/iconSvg";
 export interface Props {
-  img: string;
   item: Item;
   size?: string;
 }
 
-const ItemButton = ({ img, item, size }: Props): ReactElement => {
-  const { setItemFocus, setItemIsActive, itemIsActive } = useContext(GlobalContext);
+const ItemButton = ({ item, size }: Props): ReactElement => {
+  const { setItemFocus, setItemIsActive, itemIsActive, version } =
+    useGlobalContext();
+
+  const { data: image, isLoading } = useImgItem(version, item.image.full);
 
   const isActive = useMemo(() => {
     return itemIsActive?.name === item.name;
-  }, [itemIsActive]);
+  }, [item.name, itemIsActive?.name]);
 
-  const [{ isDragging }, drag] = useDrag<{ item: Item }, void, { isDragging: boolean }>({
+  const [{ isDragging }, drag] = useDrag<
+    { item: Item; img: HTMLImageElement | undefined },
+    void,
+    { isDragging: boolean }
+  >({
     type: "ITEM_TO_INVENTORY",
-    item: { item: item },
+    item: { item: item, img: image },
     collect: (monitor) => ({
       isDragging: !!monitor.isDragging(),
     }),
@@ -29,7 +38,11 @@ const ItemButton = ({ img, item, size }: Props): ReactElement => {
     <button
       ref={drag}
       style={{ opacity: isDragging ? 0.5 : 1, touchAction: "none" }}
-      className={classNames(size, !isActive && "border-2 border-grey-2 hover:border-or-2", "m-1 relative")}
+      className={classNames(
+        size,
+        !isActive && "border-2 border-grey-2 hover:border-or-2",
+        "m-1 relative"
+      )}
       onMouseEnter={() => !itemIsActive && setItemFocus(item)}
       onMouseLeave={() => !itemIsActive && setItemFocus(undefined)}
       draggable={true}
@@ -40,13 +53,22 @@ const ItemButton = ({ img, item, size }: Props): ReactElement => {
     >
       {isActive && (
         <img
-          src={border}
+          src={border.src}
           alt={`${border}-image`}
           className="absolute w-full h-full z-10 transform scale-[1.10]"
           style={{ top: 0, position: "absolute" }}
         />
       )}
-      <img src={img} alt={`${img}-image`} className="w-full h-full" />
+
+      {image && !isLoading ? (
+        <ImageComponent
+          image={image}
+          alt={`champion-${item.image.full}-img`}
+          className="w-full h-full"
+        />
+      ) : (
+        <BuilderIcon className="w-full h-full fill-blue-6" />
+      )}
     </button>
   );
 };

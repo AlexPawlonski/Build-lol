@@ -17,7 +17,7 @@ import {
   vampirism,
   MsSpeIcon,
   AdSpe,
-} from "../../../assets/iconStat";
+} from "@public/iconStat";
 
 export interface Props {
   label: string;
@@ -66,11 +66,16 @@ const StatItem = ({ label, value }: Props): ReactElement => {
 
   return (
     <div className="flex justify-center items-center">
-      <img src={icon(label)} alt={`${label}-img`} className="w-5 lg:w-10 lg:mr-2 mr-1" />
-      <p className="font-bold text-or-1 lg:text-2xl">{Array.isArray(value) ? `${value[0]} | ${value[1]}%` : value}</p>
+      <img
+        src={icon(label)?.src}
+        alt={`${label}-img`}
+        className="w-5 lg:w-10 lg:mr-2 mr-1"
+      />
+      <p className="font-bold text-or-1 lg:text-2xl">
+        {Array.isArray(value) ? `${value[0]} | ${value[1]}%` : value}
+      </p>
     </div>
   );
 };
 
 export default StatItem;
-

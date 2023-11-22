@@ -1,16 +1,25 @@
 import { ReactElement } from "react";
-
 import { getChampionLoading } from "../../../api";
-import { Champion } from "../../../interface";
+import { useImgLoading } from "@src/hook";
+import { ImageComponent } from "@src/components/atoms";
 
 export interface Props {
-  champSelected: Champion;
+  id: string;
 }
 
-const ChampionLoadingImg = ({ champSelected }: Props): ReactElement => {
+const ChampionLoadingImg = ({ id }: Props): ReactElement => {
+  const { data: image, isLoading } = useImgLoading(id);
   return (
     <div className="items-center justify-center border-2 border-or-2 w-full hidden lg:flex">
-      <img src={getChampionLoading(champSelected.id)} alt={`${champSelected.id}-Loading-img`} className="w-full" />
+      {image && !isLoading ? (
+        <ImageComponent
+          image={image}
+          alt={`${id}-Loading-img`}
+          className="w-full"
+        />
+      ) : (
+        <div></div>
+      )}
     </div>
   );
 };

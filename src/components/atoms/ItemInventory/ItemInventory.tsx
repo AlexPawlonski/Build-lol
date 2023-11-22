@@ -1,22 +1,39 @@
+"use client";
 import { ReactElement, useContext, useEffect, useState } from "react";
 import { classNames } from "../../../utils";
-import { getItemImg } from "../../../api";
 import { useDrag, useDrop } from "react-dnd";
 import { Item } from "../../../interface";
-import { GlobalContext } from "../../../globalContext";
+import { useGlobalContext } from "@src/context/globalContext";
+import { useImgItem } from "@src/hook";
+
 export interface Props {
   itemInInventory: Item | undefined;
   idInventory: number;
 }
 
-const ItemInventory = ({ itemInInventory, idInventory }: Props): ReactElement => {
-  const { setChampInventory, champInventory, version } = useContext(GlobalContext);
-  const [item, setItem] = useState<Item | undefined>();
+const ItemInventory = ({
+  itemInInventory,
+  idInventory,
+}: Props): ReactElement => {
+  const { setChampInventory, champInventory, version } = useGlobalContext();
 
-  const [{}, drop] = useDrop<{ item: Item }, void, { canDrop: boolean }>({
+  const { data: image } = useImgItem(
+    version,
+    itemInInventory?.image.full ? itemInInventory?.image.full : ""
+  );
+
+  const [item, setItem] = useState<
+    { item: Item; image: HTMLImageElement | undefined } | undefined
+  >();
+
+  const [{}, drop] = useDrop<
+    { item: Item; img: HTMLImageElement | undefined },
+    void,
+    { canDrop: boolean }
+  >({
     accept: "ITEM_TO_INVENTORY",
     drop: (item) => {
-      setItem(item.item);
+      setItem({ item: item.item, image: item.img });
       const newIventory = champInventory;
       const keys = Object.keys(newIventory);
       if (idInventory >= 0 && idInventory < keys.length) {
@@ -31,10 +48,18 @@ const ItemInventory = ({ itemInInventory, idInventory }: Props): ReactElement =>
   });
 
   useEffect(() => {
-    !Boolean(itemInInventory) ? setItem(undefined) : setItem(itemInInventory);
+    if (itemInInventory) {
+      setItem({ item: itemInInventory, image: image });
+    } else {
+      setItem(undefined);
+    }
   }, [itemInInventory]);
 
-  const [{ isDragging }, drag] = useDrag<{ itemId: number }, void, { isDragging: boolean }>({
+  const [{ isDragging }, drag] = useDrag<
+    { itemId: number },
+    void,
+    { isDragging: boolean }
+  >({
     type: "ITEM_CAN_DELETE",
     item: { itemId: idInventory },
     collect: (monitor) => ({
@@ -45,15 +70,18 @@ const ItemInventory = ({ itemInInventory, idInventory }: Props): ReactElement =>
   return (
     <div
       ref={drop}
-      className={classNames("w-full border-2 relative", !item ? "border-grey-2 pb-[100%]" : "border-or-2")}
+      className={classNames(
+        "w-full border-2 relative",
+        !item ? "border-grey-2 pb-[100%]" : "border-or-2"
+      )}
     >
       <p className="absolute top-1 right-1">{idInventory}</p>
-      {item && (
+      {item && item.image && (
         <img
           ref={drag}
           style={{ opacity: isDragging ? 0.5 : 1 }}
-          src={getItemImg(item.image.full, version)}
-          alt={`${item.image.full}-image`}
+          src={item.image.src}
+          alt={`${item.item.name}-image`}
           className="w-full h-full"
         />
       )}

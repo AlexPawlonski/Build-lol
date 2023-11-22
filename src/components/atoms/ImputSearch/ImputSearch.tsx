@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import { LoupIcon } from "../../../assets/iconSvg";
+import { LoupIcon } from "@public/iconSvg";
 import { useTranslation } from "react-i18next";
 
 export interface Props {
@@ -22,4 +22,3 @@ const ImputSearch = ({ onChange }: Props): ReactElement => {
 };
 
 export default ImputSearch;
-

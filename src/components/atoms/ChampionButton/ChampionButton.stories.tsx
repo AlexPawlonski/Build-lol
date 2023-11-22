@@ -13,4 +13,4 @@ const Template: ComponentStory<typeof ChampionButton> = (args) => {
 };
 
 export const Default: ComponentStory<typeof ChampionButton> = Template.bind({});
-Default.args = { img: iconChamp, id: "test", onClick: (id) => console.log(id) };
+Default.args = {};

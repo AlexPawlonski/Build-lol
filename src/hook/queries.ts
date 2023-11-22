@@ -1,8 +1,21 @@
+"use client";
 import { useMutation, useQuery } from "react-query";
-import { getAllChampionData, getAllItemsData, getChampionData, getLanguageCode, getRegion, getVersion } from "../api";
-import { useContext } from "react";
-import { GlobalContext } from "../globalContext";
+import {
+  getAllChampionData,
+  getAllItemsData,
+  getChampionData,
+  getChampionLoading,
+  getChampionPassiveImg,
+  getChampionSpellImg,
+  getImgChamp,
+  getImgItem,
+  getLanguageCode,
+  getRegion,
+  getVersion,
+} from "../api";
+
 import { Champion, ChampionStats, PerLvlStats } from "../interface";
+import { useGlobalContext } from "@src/context/globalContext";
 
 export function useVersion() {
   return useQuery(["game-versions"], () => getVersion());
@@ -13,15 +26,23 @@ export function useLangueCode() {
 }
 
 export function useInitChampions(lang: string, version: string) {
-  return useQuery(["game-ChampionList", lang, version], () => getAllChampionData({ lang, version }), {
-    enabled: Boolean(lang && version),
-  });
+  return useQuery(
+    ["game-ChampionList", lang, version],
+    () => getAllChampionData({ lang, version }),
+    {
+      enabled: Boolean(lang && version),
+    }
+  );
 }
 
 export function useInitItems(lang: string, version: string) {
-  return useQuery(["game-ItemList", lang, version], () => getAllItemsData({ lang, version }), {
-    enabled: Boolean(lang && version),
-  });
+  return useQuery(
+    ["game-ItemList", lang, version],
+    () => getAllItemsData({ lang, version }),
+    {
+      enabled: Boolean(lang && version),
+    }
+  );
 }
 
 export function useInitRegion(region: string) {
@@ -30,10 +51,49 @@ export function useInitRegion(region: string) {
   });
 }
 
+export function useImgChamp(version: string, id: string) {
+  return useQuery([`champ-img-${id}`, version], () => getImgChamp(id, version), {
+    enabled: Boolean(version),
+  });
+}
+
+export function useImgItem(version: string, id: string) {
+  return useQuery([`item-img-${id}`, version], () => getImgItem(id, version), {
+    enabled: Boolean(id),
+  });
+}
+
+export function useImgSpell(version: string, id: string) {
+  return useQuery(
+    [`spell-img-${id}`, version],
+    () => getChampionSpellImg(id, version),
+    {
+      enabled: Boolean(version),
+    }
+  );
+}
+export function useImgPassive(version: string, id: string) {
+  return useQuery(
+    [`passive-img-${id}`, version],
+    () => getChampionPassiveImg(id, version),
+    {
+      enabled: Boolean(version),
+    }
+  );
+}
+
+export function useImgLoading(id: string) {
+  return useQuery([`loading-img-${id}`], () => getChampionLoading(id), {
+    enabled: Boolean(id),
+  });
+}
+
 export function useChampion() {
-  const { setChampSelected, setRouter, setChampStats, setChampPerLvl } = useContext(GlobalContext);
+  const { setChampSelected, setChampStats, setChampPerLvl } =
+    useGlobalContext();
   return useMutation({
-    mutationFn: (data: { lang: string; version: string; id: string }) => getChampionData(data),
+    mutationFn: (data: { lang: string; version: string; id: string }) =>
+      getChampionData(data),
     onSuccess: (value) => {
       const championSelected: Champion = Object.entries(value.data)[0][1];
       const defaultChampStats: ChampionStats = {
@@ -64,7 +124,6 @@ export function useChampion() {
       setChampSelected(championSelected);
       setChampStats(defaultChampStats);
       setChampPerLvl(defaultChampPerLvl);
-      setRouter("data");
     },
   });
 }

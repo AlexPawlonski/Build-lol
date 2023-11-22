@@ -13,6 +13,7 @@ import RoleButton from "./RoleButton";
 import Select from "./Select";
 import Spell from "./Spell";
 import StatItem from "./StatItem";
+import ImageComponent from "./Image";
 
 export {
   NavItem,
@@ -30,4 +31,5 @@ export {
   ItemButton,
   ChartLine,
   ChartCircle,
+  ImageComponent,
 };
