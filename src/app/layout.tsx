@@ -30,7 +30,6 @@ export default function Layout({ children }: Props) {
   const isMobile =
     typeof window !== "undefined" && /Android/i.test(navigator.userAgent);
 
-    //push jenkins
   return (
     <html>
       <Head>
