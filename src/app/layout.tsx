@@ -47,7 +47,6 @@ export default function Layout({ children }: Props) {
             <body
               className={classNames(settingOpen && "overflow-hidden h-screen")}
             >
-              <h1 className=" text-or-3">TEST</h1>
               <Header />
               <main
                 className="relative flex z-10"
