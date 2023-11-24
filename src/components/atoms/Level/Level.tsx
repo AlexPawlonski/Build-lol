@@ -1,7 +1,7 @@
 import { ReactElement, useContext } from "react";
-import { CaretUpSolid } from "../../../assets/iconSvg";
+import { CaretUpSolid } from "@public/iconSvg";
+import { useGlobalContext } from "@src/context/globalContext";
 import { useTranslation } from "react-i18next";
-import { GlobalContext } from "../../../globalContext";
 import { changeStatsPerLvl } from "../../../utils";
 import { PerLvlStats, Stats } from "../../../interface";
 
@@ -12,7 +12,7 @@ export interface Props {
 
 const Level = ({ champSelectStats, champPerLvl }: Props): ReactElement => {
   const { t } = useTranslation();
-  const { level, setLevel, setChampStats } = useContext(GlobalContext);
+  const { level, setLevel, setChampStats } = useGlobalContext();
   return (
     <div className="flex items-center gap-2">
       <CaretUpSolid
@@ -20,7 +20,9 @@ const Level = ({ champSelectStats, champPerLvl }: Props): ReactElement => {
         onClick={() => {
           if (level !== 1) {
             setLevel(level - 1);
-            setChampStats(changeStatsPerLvl(champSelectStats, champPerLvl, level - 1));
+            setChampStats(
+              changeStatsPerLvl(champSelectStats, champPerLvl, level - 1)
+            );
           }
         }}
       />
@@ -32,7 +34,9 @@ const Level = ({ champSelectStats, champPerLvl }: Props): ReactElement => {
         onClick={() => {
           if (level !== 18) {
             setLevel(level + 1);
-            setChampStats(changeStatsPerLvl(champSelectStats, champPerLvl, level + 1));
+            setChampStats(
+              changeStatsPerLvl(champSelectStats, champPerLvl, level + 1)
+            );
           }
         }}
       />

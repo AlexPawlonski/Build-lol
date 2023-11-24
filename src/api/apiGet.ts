@@ -1,4 +1,9 @@
-import { ChampionData, ChampionsData, ItemData, LeagueOfLegendsCDN } from "../interface";
+import {
+  ChampionData,
+  ChampionsData,
+  ItemData,
+  LeagueOfLegendsCDN,
+} from "../interface";
 import { VITE_LOL_URL, apiLol } from "./axios";
 
 export async function getVersion(): Promise<string[]> {
@@ -8,6 +13,7 @@ export async function getVersion(): Promise<string[]> {
   });
   return data;
 }
+
 export async function getRegion(region: string): Promise<LeagueOfLegendsCDN> {
   const { data } = await apiLol({
     method: "GET",
@@ -15,6 +21,7 @@ export async function getRegion(region: string): Promise<LeagueOfLegendsCDN> {
   });
   return data;
 }
+
 export async function getLanguageCode(): Promise<string[]> {
   const { data } = await apiLol({
     method: "GET",
@@ -23,14 +30,22 @@ export async function getLanguageCode(): Promise<string[]> {
   return data;
 }
 
-export async function getAllChampionData(param: { lang: string; version: string }): Promise<ChampionsData> {
+export async function getAllChampionData(param: {
+  lang: string;
+  version: string;
+}): Promise<ChampionsData> {
   const { data } = await apiLol({
     method: "GET",
     url: `/cdn/${param.version}/data/${param.lang}/champion.json`,
   });
   return data;
 }
-export async function getChampionData(param: { lang: string; version: string; id: string }): Promise<ChampionData> {
+
+export async function getChampionData(param: {
+  lang: string;
+  version: string;
+  id: string;
+}): Promise<ChampionData> {
   const { data } = await apiLol({
     method: "GET",
     url: `/cdn/${param.version}/data/${param.lang}/champion/${param.id}.json`,
@@ -38,23 +53,10 @@ export async function getChampionData(param: { lang: string; version: string; id
   return data;
 }
 
-export function getChampionLoading(id: string): string {
-  return `${VITE_LOL_URL}/cdn/img/champion/loading/${id}_0.jpg`;
-}
-
-export function getChampionImg(id: string, version: string): string {
-  return `${VITE_LOL_URL}/cdn/${version}/img/champion/${id}`;
-}
-
-export function getChampionSpellImg(id: string, version: string): string {
-  return `${VITE_LOL_URL}/cdn/${version}/img/spell/${id}`;
-}
-
-export function getChampionPassiveImg(id: string, version: string): string {
-  return `${VITE_LOL_URL}/cdn/${version}/img/passive/${id}`;
-}
-
-export async function getAllItemsData(param: { lang: string; version: string }): Promise<ItemData> {
+export async function getAllItemsData(param: {
+  lang: string;
+  version: string;
+}): Promise<ItemData> {
   const { data } = await apiLol({
     method: "GET",
     url: `/cdn/${param.version}/data/${param.lang}/item.json`,
@@ -62,9 +64,57 @@ export async function getAllItemsData(param: { lang: string; version: string }):
   return data;
 }
 
-export function getItemImg(id: string, version: string): string {
-  return `${VITE_LOL_URL}/cdn/${version}/img/item/${id}`;
+export async function getChampionLoading(id: string) {
+  const { data } = await apiLol({
+    method: "GET",
+    url: `/cdn/img/champion/loading/${id}_0.jpg`,
+    responseType: "arraybuffer",
+  });
+  return arrayBufferToBase64(data);
 }
+
+export async function getChampionSpellImg(id: string, version: string) {
+  const { data } = await apiLol({
+    method: "GET",
+    url: `/cdn/${version}/img/spell/${id}`,
+    responseType: "arraybuffer",
+  });
+  return arrayBufferToBase64(data);
+}
+
+export async function getChampionPassiveImg(id: string, version: string) {
+  const { data } = await apiLol({
+    method: "GET",
+    url: `/cdn/${version}/img/passive/${id}`,
+    responseType: "arraybuffer",
+  });
+  return arrayBufferToBase64(data);
+}
+
+export async function getImgItem(id: string, version: string) {
+  const { data } = await apiLol({
+    method: "GET",
+    url: `/cdn/${version}/img/item/${id}`,
+    responseType: "arraybuffer",
+  });
+  return arrayBufferToBase64(data);
+}
+
+export async function getImgChamp(id: string, version: string) {
+  const { data } = await apiLol({
+    method: "GET",
+    url: `/cdn/${version}/img/champion/${id}.png`,
+    responseType: "arraybuffer",
+  });
+  return arrayBufferToBase64(data);
+}
+
+const arrayBufferToBase64 = (buffer: any) => {
+  let binary = "";
+  const bytes = [].slice.call(new Uint8Array(buffer));
+  bytes.forEach((byte) => (binary += String.fromCharCode(byte)));
+  return "data:image/png;base64," + window.btoa(binary);
+};
 
 // export async function getChampionSplash( id: string) {
 //   //http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Aatrox_0.jpg

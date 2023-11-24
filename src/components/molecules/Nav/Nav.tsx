@@ -1,13 +1,13 @@
 import { ReactElement, useContext } from "react";
 import { NavItem } from "../../atoms";
-import { GlobalContext } from "../../../globalContext";
 import { useTranslation } from "react-i18next";
-import { BuilderIcon, ChampionIcon } from "../../../assets/iconSvg";
+import { BuilderIcon, ChampionIcon } from "@public/iconSvg";
+import { useGlobalContext } from "@src/context/globalContext";
 
 export interface Props {}
 
 const Nav = ({}: Props): ReactElement => {
-  const { router, setRouter, champSelected } = useContext(GlobalContext);
+  const { champSelected } = useGlobalContext();
   const { t } = useTranslation();
   return (
     <nav className="h-full flex gap-2 lg:gap-4 xl:gap-6">
@@ -16,14 +16,12 @@ const Nav = ({}: Props): ReactElement => {
           <NavItem
             title={t("selectChampion")}
             icon={<ChampionIcon className="w-7 h-full p-1" />}
-            onClick={() => setRouter("champSelect")}
-            canClick={router === "data"}
+            href="/ChampSelect"
           />
           <NavItem
             title={t("builderChampion")}
             icon={<BuilderIcon className="w-7" />}
-            onClick={() => setRouter("data")}
-            canClick={Boolean(router === "champSelect" && champSelected)}
+            href="/DataView"
           />
         </>
       )}
