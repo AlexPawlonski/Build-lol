@@ -23,11 +23,11 @@ const ItemInventory = ({
   );
 
   const [item, setItem] = useState<
-    { item: Item; image: HTMLImageElement | undefined } | undefined
+    { item: Item; image: string | undefined } | undefined
   >();
 
   const [{}, drop] = useDrop<
-    { item: Item; img: HTMLImageElement | undefined },
+    { item: Item; img: string | undefined },
     void,
     { canDrop: boolean }
   >({
@@ -80,7 +80,7 @@ const ItemInventory = ({
         <img
           ref={drag}
           style={{ opacity: isDragging ? 0.5 : 1 }}
-          src={item.image.src}
+          src={item.image}
           alt={`${item.item.name}-image`}
           className="w-full h-full"
         />

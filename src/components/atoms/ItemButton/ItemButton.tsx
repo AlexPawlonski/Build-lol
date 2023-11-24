@@ -23,7 +23,7 @@ const ItemButton = ({ item, size }: Props): ReactElement => {
   }, [item.name, itemIsActive?.name]);
 
   const [{ isDragging }, drag] = useDrag<
-    { item: Item; img: HTMLImageElement | undefined },
+    { item: Item; img: string | undefined },
     void,
     { isDragging: boolean }
   >({

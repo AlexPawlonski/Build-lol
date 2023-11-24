@@ -4,13 +4,13 @@ import { useImgItem } from "@src/hook";
 import { useGlobalContext } from "@src/context/globalContext";
 
 export interface Props {
-  image: HTMLImageElement;
+  image: string;
   alt: string;
   className?: string;
 }
 
 const ImageComponent = ({ image, alt, className }: Props): ReactElement => {
-   return <img src={image.src} alt={alt} className={className} />;
+  return <img src={image} alt={alt} className={className} />;
 };
 
 export default ImageComponent;
