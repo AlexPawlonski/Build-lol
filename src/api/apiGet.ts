@@ -68,59 +68,53 @@ export async function getChampionLoading(id: string) {
   const { data } = await apiLol({
     method: "GET",
     url: `/cdn/img/champion/loading/${id}_0.jpg`,
-    responseType: "blob",
+    responseType: "arraybuffer",
   });
-
-  return linkBlob(data);
+  return arrayBufferToBase64(data);
 }
 
 export async function getChampionSpellImg(id: string, version: string) {
   const { data } = await apiLol({
     method: "GET",
     url: `/cdn/${version}/img/spell/${id}`,
-    responseType: "blob",
+    responseType: "arraybuffer",
   });
-
-  return linkBlob(data);
+  return arrayBufferToBase64(data);
 }
 
 export async function getChampionPassiveImg(id: string, version: string) {
   const { data } = await apiLol({
     method: "GET",
     url: `/cdn/${version}/img/passive/${id}`,
-    responseType: "blob",
+    responseType: "arraybuffer",
   });
-
-  return linkBlob(data);
+  return arrayBufferToBase64(data);
 }
 
 export async function getImgItem(id: string, version: string) {
   const { data } = await apiLol({
     method: "GET",
     url: `/cdn/${version}/img/item/${id}`,
-    responseType: "blob",
+    responseType: "arraybuffer",
   });
-
-  return linkBlob(data);
+  return arrayBufferToBase64(data);
 }
 
 export async function getImgChamp(id: string, version: string) {
   const { data } = await apiLol({
     method: "GET",
     url: `/cdn/${version}/img/champion/${id}.png`,
-    responseType: "blob",
+    responseType: "arraybuffer",
   });
-
-  return linkBlob(data);
+  return arrayBufferToBase64(data);
 }
 
-function linkBlob(data: Blob | MediaSource) {
-  const blobUrl = URL.createObjectURL(data);
-  const img = document.createElement("img");
-  img.src = blobUrl;
-  document.body.appendChild(img);
-  return img;
-}
+const arrayBufferToBase64 = (buffer: any) => {
+  let binary = "";
+  const bytes = [].slice.call(new Uint8Array(buffer));
+  bytes.forEach((byte) => (binary += String.fromCharCode(byte)));
+  return "data:image/png;base64," + window.btoa(binary);
+};
 
 // export async function getChampionSplash( id: string) {
 //   //http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Aatrox_0.jpg
