@@ -32,7 +32,7 @@ export default function Layout({ children }: Props) {
 
   return (
     <html>
-      <Head>
+      <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta
@@ -40,7 +40,8 @@ export default function Layout({ children }: Props) {
           content="Create your own League of Legend build for the champion of your choice. And visualize its effects in real time, thanks to a host of statistics."
         />
         <title>Build-lol.com</title>
-      </Head>
+        <link rel="icon" href="/Build-lol-logo.webp" sizes="any" />
+      </head>
       <QueryClientProvider client={queryClient}>
         <GlobalContextProvider>
           <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
